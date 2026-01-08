@@ -1,6 +1,7 @@
 import { MdPostAdd, MdMessage } from 'react-icons/md';
 
 import classes from './MainHeader.module.css';
+import amirImage from '../assets/amir.png';
 
 function MainHeader() {
   return (
@@ -9,12 +10,13 @@ function MainHeader() {
         <MdMessage />
         React Poster
       </h1>
-      <p>
+      <div className={classes.actions}>
+        <img src={amirImage} alt="Amir Miller" className={classes.avatar} />
         <button className={classes.button}>
           <MdPostAdd size={18} />
           New Post
         </button>
-      </p>
+      </div>
     </header>
   );
 }

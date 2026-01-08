@@ -1,28 +1,38 @@
 .post {
   margin: 1rem 0;
-  padding: 1rem;
-  background-color: #9c7b62;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, #b38e73, #9c7b62);
   color: #341905;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 40rem;
-  animation: animate-in 0.3s ease-out forwards;
+  animation: animate-in 0.4s ease-out forwards;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.post:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .author {
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: #543210;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #4a2a0d;
   text-transform: uppercase;
   margin: 0;
+  letter-spacing: 0.05rem;
+  border-bottom: 1px solid rgba(52, 25, 5, 0.2);
+  padding-bottom: 0.5rem;
 }
 
 .text {
   white-space: pre-wrap;
-  font-size: 1.25rem;
-  margin: 0.25rem 0 0 0;
-  font-style: italic;
+  font-size: 1.35rem;
+  margin: 1rem 0 0 0;
+  line-height: 1.6;
+  color: #241104;
 }
 
 @keyframes animate-in {
