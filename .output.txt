@@ -1,0 +1,355 @@
+diff --git a/src/components/MainHeader.module.css b/src/components/MainHeader.module.css
+index f14ba3c..32d6db9 100644
+--- a/src/components/MainHeader.module.css
++++ b/src/components/MainHeader.module.css
+@@ -1,10 +1,20 @@
+ .header {
+   margin: 2rem 10%;
+-  padding: 1rem 0;
++  padding: 1.5rem 2rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+-  border-bottom: 2px solid #a67c52;
++  background: linear-gradient(145deg, rgba(166, 124, 82, 0.1), rgba(166, 124, 82, 0.05));
++  border-radius: 16px;
++  border: 1px solid rgba(166, 124, 82, 0.3);
++  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
++  backdrop-filter: blur(10px);
++  transition: all 0.3s ease;
++}
++
++.header:hover {
++  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
++  border-color: rgba(166, 124, 82, 0.5);
+ }
+
+ .logo {
+@@ -15,7 +25,14 @@
+   color: #f7f1ed;
+   margin: 0;
+   font-family: 'Quicksand', sans-serif;
+-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
++  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(166, 124, 82, 0.3);
++  transition: all 0.3s ease;
++  cursor: default;
++}
++
++.logo:hover {
++  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6), 0 0 30px rgba(166, 124, 82, 0.5);
++  transform: scale(1.02);
+ }
+
+ .actions {
+@@ -28,38 +45,104 @@
+   width: 3.5rem;
+   height: 3.5rem;
+   border-radius: 50%;
+-  border: 2px solid #a67c52;
++  border: 3px solid #a67c52;
+   object-fit: cover;
+-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+-  transition: transform 0.2s ease-in-out;
++  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(166, 124, 82, 0.4);
++  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
++  cursor: pointer;
++  position: relative;
++}
++
++.avatar::after {
++  content: '';
++  position: absolute;
++  inset: -3px;
++  border-radius: 50%;
++  padding: 3px;
++  background: linear-gradient(135deg, #d19f6e, #a67c52, #8b6643);
++  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
++  -webkit-mask-composite: xor;
++  mask-composite: exclude;
++  opacity: 0;
++  transition: opacity 0.3s ease;
+ }
+
+ .avatar:hover {
+-  transform: scale(1.1);
++  transform: scale(1.15) rotate(5deg);
++  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 20px rgba(166, 124, 82, 0.6);
++}
++
++.avatar:hover::after {
++  opacity: 1;
+ }
+
+ .button {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.5rem;
+-  padding: 0.75rem 1.5rem;
+-  background-color: #a67c52;
+-  color: #341905;
+-  border: none;
+-  border-radius: 6px;
+-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
++  padding: 0.85rem 1.75rem;
++  background: linear-gradient(135deg, #c9a68a 0%, #a67c52 100%);
++  color: #1a0c03;
++  border: 1px solid rgba(255, 255, 255, 0.2);
++  border-radius: 10px;
++  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+   cursor: pointer;
+-  font-weight: bold;
++  font-weight: 700;
+   font-size: 1rem;
+-  transition: all 0.2s ease-in-out;
++  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
++  position: relative;
++  overflow: hidden;
++}
++
++.button::before {
++  content: '';
++  position: absolute;
++  top: 50%;
++  left: 50%;
++  width: 0;
++  height: 0;
++  border-radius: 50%;
++  background: rgba(255, 255, 255, 0.3);
++  transform: translate(-50%, -50%);
++  transition: width 0.6s ease, height 0.6s ease;
++}
++
++.button:hover::before {
++  width: 300px;
++  height: 300px;
+ }
+
+ .button:hover {
+-  background-color: #d19f6e;
+-  transform: translateY(-2px);
+-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
++  background: linear-gradient(135deg, #d4b499 0%, #c9a68a 100%);
++  transform: translateY(-3px) scale(1.02);
++  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
++  border-color: rgba(255, 255, 255, 0.3);
+ }
+
+ .button:active {
+-  transform: translateY(0);
++  transform: translateY(-1px) scale(0.98);
++  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
++}
++
++.button > * {
++  position: relative;
++  z-index: 1;
++}
++
++@media (max-width: 768px) {
++  .header {
++    margin: 1rem 5%;
++    padding: 1rem;
++    flex-direction: column;
++    gap: 1.5rem;
++  }
++
++  .logo {
++    font-size: 2rem;
++  }
++
++  .actions {
++    width: 100%;
++    justify-content: center;
++  }
+ }
+diff --git a/src/components/Post.module.css b/src/components/Post.module.css
+index 3b07008..46d779d 100644
+--- a/src/components/Post.module.css
++++ b/src/components/Post.module.css
+@@ -1,47 +1,102 @@
+ .post {
+   margin: 1rem 0;
+-  padding: 1.5rem;
+-  background: linear-gradient(145deg, #b38e73, #9c7b62);
++  padding: 2rem;
++  background: linear-gradient(145deg, #c9a68a, #b38e73);
+   color: #341905;
+-  border-radius: 12px;
+-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
++  border-radius: 20px;
++  border: 1px solid rgba(255, 255, 255, 0.1);
++  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+   width: 100%;
+   max-width: 40rem;
+-  animation: animate-in 0.4s ease-out forwards;
+-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
++  animation: animate-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
++  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
++  position: relative;
++  overflow: hidden;
++}
++
++.post::before {
++  content: '';
++  position: absolute;
++  top: 0;
++  left: -100%;
++  width: 100%;
++  height: 100%;
++  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
++  transition: left 0.5s ease;
++}
++
++.post:hover::before {
++  left: 100%;
+ }
+
+ .post:hover {
+-  transform: translateY(-4px) scale(1.02);
+-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
++  transform: translateY(-10px) scale(1.04) rotate(-1deg);
++  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
++  background: linear-gradient(145deg, #d9b9a3, #c9a68a);
++  border-color: rgba(255, 255, 255, 0.2);
+ }
+
+ .author {
+-  font-size: 0.9rem;
++  font-size: 0.95rem;
+   font-weight: 800;
+   color: #4a2a0d;
+   text-transform: uppercase;
+   margin: 0;
+-  letter-spacing: 0.05rem;
+-  border-bottom: 1px solid rgba(52, 25, 5, 0.2);
+-  padding-bottom: 0.5rem;
++  letter-spacing: 0.1rem;
++  border-bottom: 2px solid rgba(74, 42, 13, 0.3);
++  padding-bottom: 0.75rem;
++  margin-bottom: 0.25rem;
++  display: inline-block;
++  position: relative;
++  transition: color 0.3s ease;
++}
++
++.author::after {
++  content: '';
++  position: absolute;
++  bottom: -2px;
++  left: 0;
++  width: 0;
++  height: 2px;
++  background: #341905;
++  transition: width 0.3s ease;
++}
++
++.post:hover .author::after {
++  width: 100%;
+ }
+
+ .text {
+   white-space: pre-wrap;
+-  font-size: 1.35rem;
+-  margin: 1rem 0 0 0;
+-  line-height: 1.6;
++  font-size: 1.4rem;
++  margin: 1.25rem 0 0 0;
++  line-height: 1.7;
+   color: #241104;
++  font-weight: 400;
++  transition: color 0.3s ease;
++}
++
++.post:hover .text {
++  color: #1a0c03;
+ }
+
+ @keyframes animate-in {
+   from {
+     opacity: 0;
+-    transform: translateY(1rem);
++    transform: translateY(2rem) scale(0.95);
+   }
+   to {
+     opacity: 1;
+-    transform: translateY(0);
++    transform: translateY(0) scale(1);
++  }
++}
++
++@media (max-width: 768px) {
++  .post {
++    padding: 1.5rem;
++  }
++
++  .text {
++    font-size: 1.2rem;
+   }
+ }
+diff --git a/src/components/PostsList.module.css b/src/components/PostsList.module.css
+index 9c46ccd..09b7583 100644
+--- a/src/components/PostsList.module.css
++++ b/src/components/PostsList.module.css
+@@ -1,10 +1,19 @@
+ .posts {
+   list-style: none;
+-  max-width: 60rem;
+-  margin: 2rem auto;
+-  padding: 1rem;
++  max-width: 70rem;
++  margin: 3rem auto;
++  padding: 2rem;
+   display: grid;
+-  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+-  gap: 2rem;
++  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
++  gap: 2.5rem;
+   justify-items: center;
++  perspective: 1000px;
++}
++
++@media (max-width: 768px) {
++  .posts {
++    grid-template-columns: 1fr;
++    padding: 1rem;
++    gap: 1.5rem;
++  }
+ }
+diff --git a/src/index.css b/src/index.css
+index b4126dd..d527c12 100644
+--- a/src/index.css
++++ b/src/index.css
+@@ -13,10 +13,31 @@
+
+ body {
+   margin: 0;
+-  background-color: #1a1614;
+-  background-image: radial-gradient(circle at 50% 50%, #292420 0%, #1a1614 100%);
++  background: linear-gradient(135deg, #1a1614 0%, #2a1f1a 50%, #1a1614 100%);
++  background-attachment: fixed;
+   color: #f7f1ed;
+   min-height: 100vh;
++  position: relative;
++}
++
++body::before {
++  content: '';
++  position: fixed;
++  top: 0;
++  left: 0;
++  right: 0;
++  bottom: 0;
++  background-image:
++    radial-gradient(circle at 20% 30%, rgba(166, 124, 82, 0.08) 0%, transparent 50%),
++    radial-gradient(circle at 80% 70%, rgba(166, 124, 82, 0.06) 0%, transparent 50%),
++    radial-gradient(circle at 50% 50%, rgba(209, 159, 110, 0.04) 0%, transparent 70%);
++  pointer-events: none;
++  z-index: 0;
++}
++
++body > * {
++  position: relative;
++  z-index: 1;
+ }
+
+ * {
