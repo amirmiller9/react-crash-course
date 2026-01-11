@@ -38,13 +38,18 @@ To stop all running services, press `Ctrl + C` in the terminal window where you 
 
 If you prefer to run or stop services independently:
 
-### Frontend Only
-*   **Start**: `npm run dev-frontend` (or just `npm run dev` if you haven't renamed scripts)
-*   **Stop**: `Ctrl + C`
+### Backend Only (Port 8080)
+To run only the backend server:
+```bash
+npm run dev-backend
+```
+*Alternatively, you can run `cd dummy-backend && npm start`.*
 
-### Backend Only
-*   **Start**: `npm run dev-backend` or `cd dummy-backend && npm start`
-*   **Stop**: `Ctrl + C`
+### Frontend Only (Port 5173)
+To run only the React frontend:
+```bash
+npm run dev-frontend
+```
 
 ## Features
 - **Shared Header**: Consistent navigation and branding.
