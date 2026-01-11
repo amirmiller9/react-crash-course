@@ -27,11 +27,11 @@ function NewPost({ onCancel, onAddPost }) {
     <form className={classes.form} onSubmit={submitHandler}>
       <p>
         <label htmlFor="body">Text</label>
-        <textarea id="body" required rows={3} onChange={bodyChangeHandler} />
+        <textarea id="body" required rows={3} onChange={bodyChangeHandler} value={enteredBody} />
       </p>
       <p>
         <label htmlFor="name">Your name</label>
-        <input type="text" id="name" required onChange={authorChangeHandler} />
+        <input type="text" id="name" required onChange={authorChangeHandler} value={enteredAuthor} />
       </p>
       <p className={classes.actions}>
         <button type="button" onClick={onCancel}>
