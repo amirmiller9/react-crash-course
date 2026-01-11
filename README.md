@@ -1,12 +1,54 @@
-# React + Vite
+# React Poster SPA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React-based "Social Media" style application where users can share short messages. It includes a frontend built with Vite/React and a local Node.js/Express backend for data persistence.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run this project, you need to have **Node.js** installed on your machine.
 
-## Expanding the ESLint configuration
+### 1. Install Dependencies
+First, install the dependencies for both the frontend and the backend:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# In the root folder
+npm install
+
+# In the dummy-backend folder
+cd dummy-backend
+npm install
+cd ..
+```
+
+### 2. Run the Application
+You can run both the frontend and the backend concurrently with a single command from the root folder:
+
+```bash
+npm run dev
+```
+
+*   **Frontend**: Runs on `http://localhost:5173`
+*   **Backend**: Runs on `http://localhost:8080`
+
+### 3. Stop the Application
+To stop all running services, press `Ctrl + C` in the terminal window where you ran `npm run dev`.
+
+---
+
+## Separate Controls
+
+If you prefer to run or stop services independently:
+
+### Frontend Only
+*   **Start**: `npm run dev-frontend` (or just `npm run dev` if you haven't renamed scripts)
+*   **Stop**: `Ctrl + C`
+
+### Backend Only
+*   **Start**: `npm run dev-backend` or `cd dummy-backend && npm start`
+*   **Stop**: `Ctrl + C`
+
+## Features
+- **Shared Header**: Consistent navigation and branding.
+- **Dynamic Post List**: Fetches and displays posts from the backend.
+- **Form Submission**: Users can create new posts which are saved to `posts.json`.
+- **Loading States**: Visual feedback while fetching data.
+- **Error Handling**: Alerts if the backend server is unreachable.

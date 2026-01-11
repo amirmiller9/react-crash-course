@@ -9,6 +9,7 @@ function PostsList({ isModalVisible, onStopPosting }) {
   const [posts, setPosts] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
 
+  // Fetch posts from the backend when the component mounts
   useEffect(() => {
     async function fetchPosts() {
       setIsFetching(true);
@@ -20,7 +21,7 @@ function PostsList({ isModalVisible, onStopPosting }) {
         const resData = await response.json();
         setPosts(resData.posts);
       } catch (error) {
-        // Basic error handling - in a real app, you might set an error state
+        // Error handling for failed fetch
         console.error(error.message);
       }
       setIsFetching(false);
@@ -29,6 +30,7 @@ function PostsList({ isModalVisible, onStopPosting }) {
     fetchPosts();
   }, []);
 
+  // Handler for adding a new post via the backend
   async function addPostHandler(postData) {
     try {
       const response = await fetch('http://localhost:8080/posts', {
@@ -43,10 +45,11 @@ function PostsList({ isModalVisible, onStopPosting }) {
         throw new Error('Failed to save post.');
       }
 
+      // Update local state to show the new post immediately after successful save
       setPosts((existingPosts) => [postData, ...existingPosts]);
     } catch (error) {
       console.error(error.message);
-      // In a real app, you would show this to the user via UI
+      // Alert the user if something went wrong (e.g., backend offline)
       alert('Failed to save the post. Is the backend server running?');
     }
   }

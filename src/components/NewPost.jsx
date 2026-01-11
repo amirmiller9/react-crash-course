@@ -5,22 +5,25 @@ function NewPost({ onCancel, onAddPost }) {
   const [enteredBody, setEnteredBody] = useState('');
   const [enteredAuthor, setEnteredAuthor] = useState('');
 
+  // Handle changes in the text textarea
   function bodyChangeHandler(event) {
     setEnteredBody(event.target.value);
   }
 
+  // Handle changes in the author name input
   function authorChangeHandler(event) {
     setEnteredAuthor(event.target.value);
   }
 
+  // Handle form submission
   function submitHandler(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent browser default form submission (page reload)
     const postData = {
       body: enteredBody,
       author: enteredAuthor,
     };
-    onAddPost(postData);
-    onCancel();
+    onAddPost(postData); // Call the parent handler to save data
+    onCancel(); // Close the modal
   }
 
   return (
