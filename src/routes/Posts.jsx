@@ -5,9 +5,7 @@ function Posts() {
   return (
     <>
       <Outlet />
-      <main>
-        <PostsList />
-      </main>
+      <PostsList />
     </>
   );
 }

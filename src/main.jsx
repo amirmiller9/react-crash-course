@@ -5,12 +5,14 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Posts, { loader as postsLoader } from './routes/Posts.jsx'
 import RootLayout from './routes/RootLayout.jsx'
 import NewPost, { action as newPostAction } from './components/NewPost.jsx'
+import Error from './routes/Error.jsx'
 import './index.css'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: '/',

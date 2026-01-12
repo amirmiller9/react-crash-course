@@ -43,3 +43,34 @@ body > * {
 * {
   box-sizing: border-box;
 }
+
+.error-content {
+  text-align: center;
+  margin-top: 5rem;
+  padding: 2rem;
+}
+
+.error-content h1 {
+  font-size: 3rem;
+  color: #d19f6e;
+}
+
+.error-content p {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.error-content .button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #a67c52;
+  color: #1a0c03;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.error-content .button:hover {
+  background: #d19f6e;
+}
