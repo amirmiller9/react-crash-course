@@ -11,16 +11,23 @@ function PostsList({ isModalVisible, onStopPosting }) {
 
   // Fetch posts from the backend when the component mounts
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     async function fetchPosts() {
       setIsFetching(true);
       try {
-        const response = await fetch('http://localhost:8080/posts');
+        const response = await fetch('http://localhost:8080/posts', { signal });
         if (!response.ok) {
           throw new Error('Could not fetch posts.');
         }
         const resData = await response.json();
         setPosts(resData.posts);
       } catch (error) {
+        if (error.name === 'AbortError') {
+          // Ignore abort errors
+          return;
+        }
         // Error handling for failed fetch
         console.error(error.message);
       }
@@ -28,6 +35,11 @@ function PostsList({ isModalVisible, onStopPosting }) {
     }
 
     fetchPosts();
+
+    // Cleanup function to abort the fetch if the component unmounts
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   // Handler for adding a new post via the backend
