@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import { MdPostAdd, MdMessage } from 'react-icons/md';
 
 import classes from './MainHeader.module.css';
 import amirImage from '../assets/amir.png';
 
-function MainHeader({ onCreatePost }) {
+function MainHeader() {
   return (
     <header className={classes.header}>
       <h1 className={classes.logo}>
@@ -12,10 +13,10 @@ function MainHeader({ onCreatePost }) {
       </h1>
       <div className={classes.actions}>
         <img src={amirImage} alt="Amir Miller" className={classes.avatar} />
-        <button className={classes.button} onClick={onCreatePost}>
+        <Link to="/create-post" className={classes.button}>
           <MdPostAdd size={18} />
           New Post
-        </button>
+        </Link>
       </div>
     </header>
   );

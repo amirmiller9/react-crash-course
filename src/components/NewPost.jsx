@@ -1,49 +1,47 @@
-import { useState } from 'react';
+import { Form, Link, redirect } from 'react-router-dom';
 import classes from './NewPost.module.css';
+import Modal from './Modal';
 
-function NewPost({ onCancel, onAddPost }) {
-  const [enteredBody, setEnteredBody] = useState('');
-  const [enteredAuthor, setEnteredAuthor] = useState('');
-
-  // Handle changes in the text textarea
-  function bodyChangeHandler(event) {
-    setEnteredBody(event.target.value);
-  }
-
-  // Handle changes in the author name input
-  function authorChangeHandler(event) {
-    setEnteredAuthor(event.target.value);
-  }
-
-  // Handle form submission
-  function submitHandler(event) {
-    event.preventDefault(); // Prevent browser default form submission (page reload)
-    const postData = {
-      body: enteredBody,
-      author: enteredAuthor,
-    };
-    onAddPost(postData); // Call the parent handler to save data
-    onCancel(); // Close the modal
-  }
-
+function NewPost() {
   return (
-    <form className={classes.form} onSubmit={submitHandler}>
-      <p>
-        <label htmlFor="body">Text</label>
-        <textarea id="body" required rows={3} onChange={bodyChangeHandler} value={enteredBody} />
-      </p>
-      <p>
-        <label htmlFor="name">Your name</label>
-        <input type="text" id="name" required onChange={authorChangeHandler} value={enteredAuthor} />
-      </p>
-      <p className={classes.actions}>
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
-        <button type="submit">Submit</button>
-      </p>
-    </form>
+    <Modal>
+      <Form method="post" className={classes.form}>
+        <p>
+          <label htmlFor="body">Text</label>
+          <textarea id="body" name="body" required rows={3} />
+        </p>
+        <p>
+          <label htmlFor="name">Your name</label>
+          <input type="text" id="name" name="author" required />
+        </p>
+        <p className={classes.actions}>
+          <Link type="button" to="..">
+            Cancel
+          </Link>
+          <button type="submit">Submit</button>
+        </p>
+      </Form>
+    </Modal>
   );
 }
 
 export default NewPost;
+
+export async function action({ request }) {
+  const formData = await request.formData();
+  const postData = Object.fromEntries(formData); // { body: '...', author: '...' }
+
+  const response = await fetch('http://localhost:8080/posts', {
+    method: 'POST',
+    body: JSON.stringify(postData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to save post.');
+  }
+
+  return redirect('/');
+}
