@@ -87,7 +87,7 @@ function PostsList({ isModalVisible, onStopPosting }) {
         </div>
       )}
       {isFetching && (
-        <div style={{ textAlign: 'center', color: 'white' }}>
+        <div className={classes.loading}>
           <p>Loading posts...</p>
         </div>
       )}
