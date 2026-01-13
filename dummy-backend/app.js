@@ -27,11 +27,19 @@ app.get('/posts', async (req, res) => {
   }, 1500);
 });
 
+// GET /posts/:id - Retrieves a specific post by its ID
+app.get('/posts/:id', async (req, res) => {
+  const fileContent = await fs.readFile('posts.json');
+  const postData = JSON.parse(fileContent);
+  const post = postData.posts.find((post) => post.id === req.params.id);
+  res.status(200).json({ post });
+});
+
 // POST /posts - Saves a new post to the posts.json database
 app.post('/posts', async (req, res) => {
   const fileContent = await fs.readFile('posts.json');
   const postData = JSON.parse(fileContent);
-  const newPost = req.body;
+  const newPost = { ...req.body, id: Math.random().toString() };
   const updatedPosts = [newPost, ...postData.posts];
   
   // Persist updated list back to the JSON file

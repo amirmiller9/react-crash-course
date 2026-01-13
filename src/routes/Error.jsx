@@ -16,6 +16,11 @@ function Error() {
     message = 'Could not find resource or page.';
   }
 
+  // Handle generic Error objects (like from fetch failures)
+  if (!error.status && error.message) {
+    message = error.message;
+  }
+
   return (
     <>
       <MainHeader />
