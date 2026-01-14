@@ -1,11 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import classes from './Modal.module.css';
 
 function Modal({ children }) {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   function closeHandler() {
-    navigate('..');
+    router.back();
   }
 
   return (

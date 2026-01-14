@@ -1,0 +1,111 @@
+/* [project]/src/components/Post.module.css [app-client] (css) */
+.Post-module__Tkd6-W__post {
+  color: #341905;
+  background: linear-gradient(145deg, #c9a68a, #b38e73);
+  border: 1px solid #ffffff1a;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 40rem;
+  margin: 1rem 0;
+  transition: all .4s cubic-bezier(.4, 0, .2, 1);
+  animation: .6s cubic-bezier(.34, 1.56, .64, 1) forwards Post-module__Tkd6-W__animate-in;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px #0000004d, 0 3px 10px #0003, inset 0 1px #fff3;
+}
+
+.Post-module__Tkd6-W__post a {
+  color: inherit;
+  padding: 2rem;
+  text-decoration: none;
+  display: block;
+}
+
+.Post-module__Tkd6-W__post:before {
+  content: "";
+  background: linear-gradient(90deg, #0000, #fff3, #0000);
+  width: 100%;
+  height: 100%;
+  transition: left .5s;
+  position: absolute;
+  top: 0;
+  left: -100%;
+}
+
+.Post-module__Tkd6-W__post:hover:before {
+  left: 100%;
+}
+
+.Post-module__Tkd6-W__post:hover {
+  background: linear-gradient(145deg, #d9b9a3, #c9a68a);
+  border-color: #fff3;
+  transform: translateY(-10px)scale(1.04)rotate(-1deg);
+  box-shadow: 0 20px 50px #0006, 0 6px 20px #0000004d, inset 0 1px #ffffff4d;
+}
+
+.Post-module__Tkd6-W__author {
+  color: #4a2a0d;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  border-bottom: 2px solid #4a2a0d4d;
+  margin: 0 0 .25rem;
+  padding-bottom: .75rem;
+  font-size: .95rem;
+  font-weight: 800;
+  transition: color .3s;
+  display: inline-block;
+  position: relative;
+}
+
+.Post-module__Tkd6-W__author:after {
+  content: "";
+  background: #341905;
+  width: 0;
+  height: 2px;
+  transition: width .3s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+.Post-module__Tkd6-W__post:hover .Post-module__Tkd6-W__author:after {
+  width: 100%;
+}
+
+.Post-module__Tkd6-W__text {
+  white-space: pre-wrap;
+  color: #241104;
+  margin: 1.25rem 0 0;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.7;
+  transition: color .3s;
+}
+
+.Post-module__Tkd6-W__post:hover .Post-module__Tkd6-W__text {
+  color: #1a0c03;
+}
+
+@keyframes Post-module__Tkd6-W__animate-in {
+  from {
+    opacity: 0;
+    transform: translateY(2rem)scale(.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .Post-module__Tkd6-W__post {
+    padding: 1.5rem;
+  }
+
+  .Post-module__Tkd6-W__text {
+    font-size: 1.2rem;
+  }
+}
+
+/*# sourceMappingURL=src_components_Post_module_css_bad6b30c._.single.css.map*/

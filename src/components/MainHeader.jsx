@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+import Image from 'next/image';
 import { MdPostAdd, MdMessage } from 'react-icons/md';
 
 import classes from './MainHeader.module.css';
-import amirImage from '../assets/amir.png';
 
 function MainHeader() {
   return (
@@ -12,8 +12,14 @@ function MainHeader() {
         React Poster
       </h1>
       <div className={classes.actions}>
-        <img src={amirImage} alt="Amir Miller" className={classes.avatar} />
-        <Link to="/create-post" className={classes.button}>
+        <Image 
+          src="/images/amir.png" 
+          alt="Amir Miller" 
+          width={56} 
+          height={56} 
+          className={classes.avatar}
+        />
+        <Link href="/create-post" className={classes.button}>
           <MdPostAdd size={18} />
           New Post
         </Link>

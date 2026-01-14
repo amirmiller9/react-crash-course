@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 27, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/components/Modal.module.css [app-ssr] (css module)"],"sourcesContent":["__turbopack_context__.v({\n  \"backdrop\": \"Modal-module__Ro-5Wq__backdrop\",\n  \"modal\": \"Modal-module__Ro-5Wq__modal\",\n  \"slide-down-fade-in\": \"Modal-module__Ro-5Wq__slide-down-fade-in\",\n});\n"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA"}},
+    {"offset": {"line": 36, "column": 0}, "map": {"version":3,"sources":["file:///Users/amirmiller/workspace/react-crash-corsue/src/components/Modal.jsx"],"sourcesContent":["'use client';\n\nimport { useRouter } from 'next/navigation';\nimport classes from './Modal.module.css';\n\nfunction Modal({ children }) {\n  const router = useRouter();\n\n  function closeHandler() {\n    router.back();\n  }\n\n  return (\n    <>\n      <div className={classes.backdrop} onClick={closeHandler} />\n      <dialog open className={classes.modal}>\n        {children}\n      </dialog>\n    </>\n  );\n}\n\nexport default Modal;\n"],"names":[],"mappings":";;;;;AAEA;AACA;AAHA;;;;AAKA,SAAS,MAAM,EAAE,QAAQ,EAAE;IACzB,MAAM,SAAS,IAAA,+IAAS;IAExB,SAAS;QACP,OAAO,IAAI;IACb;IAEA,qBACE;;0BACE,8OAAC;gBAAI,WAAW,iJAAO,CAAC,QAAQ;gBAAE,SAAS;;;;;;0BAC3C,8OAAC;gBAAO,IAAI;gBAAC,WAAW,iJAAO,CAAC,KAAK;0BAClC;;;;;;;;AAIT;uCAEe"}}]
+}

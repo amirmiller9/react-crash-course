@@ -1,0 +1,160 @@
+/* [project]/src/components/MainHeader.module.css [app-client] (css) */
+.MainHeader-module__n0xcxq__header {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: linear-gradient(145deg, #a67c521a, #a67c520d);
+  border: 1px solid #a67c524d;
+  border-radius: 16px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 10%;
+  padding: 1.5rem 2rem;
+  transition: all .3s;
+  display: flex;
+  box-shadow: 0 4px 20px #0006, inset 0 1px #ffffff1a;
+}
+
+.MainHeader-module__n0xcxq__header:hover {
+  border-color: #a67c5280;
+  box-shadow: 0 6px 28px #00000080, inset 0 1px #ffffff26;
+}
+
+.MainHeader-module__n0xcxq__logo {
+  color: #f7f1ed;
+  text-shadow: 0 2px 8px #00000080, 0 0 20px #a67c524d;
+  cursor: default;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  font-family: Quicksand, sans-serif;
+  font-size: 2.5rem;
+  transition: all .3s;
+  display: flex;
+}
+
+.MainHeader-module__n0xcxq__logo:hover {
+  text-shadow: 0 2px 12px #0009, 0 0 30px #a67c5280;
+  transform: scale(1.02);
+}
+
+.MainHeader-module__n0xcxq__actions {
+  align-items: center;
+  gap: 1.5rem;
+  display: flex;
+}
+
+.MainHeader-module__n0xcxq__avatar {
+  object-fit: cover;
+  cursor: pointer;
+  border: 3px solid #a67c52;
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
+  position: relative;
+  box-shadow: 0 4px 12px #00000080, 0 0 #a67c5266;
+}
+
+.MainHeader-module__n0xcxq__avatar:after {
+  content: "";
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  background: linear-gradient(135deg, #d19f6e, #a67c52, #8b6643);
+  border-radius: 50%;
+  padding: 3px;
+  transition: opacity .3s;
+  position: absolute;
+  inset: -3px;
+  -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+  -webkit-mask-position: 0 0, 0 0;
+  -webkit-mask-size: auto, auto;
+  -webkit-mask-repeat: repeat, repeat;
+  -webkit-mask-clip: content-box, border-box;
+  -webkit-mask-origin: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  -webkit-mask-source-type: auto, auto;
+  mask-mode: match-source, match-source;
+}
+
+.MainHeader-module__n0xcxq__avatar:hover {
+  transform: scale(1.15)rotate(5deg);
+  box-shadow: 0 6px 20px #0009, 0 0 20px #a67c5299;
+}
+
+.MainHeader-module__n0xcxq__avatar:hover:after {
+  opacity: 1;
+}
+
+.MainHeader-module__n0xcxq__button {
+  color: #1a0c03;
+  cursor: pointer;
+  background: linear-gradient(135deg, #c9a68a 0%, #a67c52 100%);
+  border: 1px solid #fff3;
+  border-radius: 10px;
+  align-items: center;
+  gap: .5rem;
+  padding: .85rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px #0006, inset 0 1px #fff3;
+}
+
+.MainHeader-module__n0xcxq__button:before {
+  content: "";
+  background: #ffffff4d;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  transition: width .6s, height .6s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.MainHeader-module__n0xcxq__button:hover:before {
+  width: 300px;
+  height: 300px;
+}
+
+.MainHeader-module__n0xcxq__button:hover {
+  background: linear-gradient(135deg, #d4b499 0%, #c9a68a 100%);
+  border-color: #ffffff4d;
+  transform: translateY(-3px)scale(1.02);
+  box-shadow: 0 8px 20px #00000080, inset 0 1px #ffffff4d;
+}
+
+.MainHeader-module__n0xcxq__button:active {
+  transform: translateY(-1px)scale(.98);
+  box-shadow: 0 4px 10px #0006, inset 0 1px #fff3;
+}
+
+.MainHeader-module__n0xcxq__button > * {
+  z-index: 1;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .MainHeader-module__n0xcxq__header {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1rem 5%;
+    padding: 1rem;
+  }
+
+  .MainHeader-module__n0xcxq__logo {
+    font-size: 2rem;
+  }
+
+  .MainHeader-module__n0xcxq__actions {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=src_components_MainHeader_module_css_bad6b30c._.single.css.map*/
