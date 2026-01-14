@@ -1,5 +1,4 @@
 import { redirect } from 'next/navigation';
-import MainHeader from '../../components/MainHeader';
 import PostsList from '../../components/PostsList';
 import Modal from '../../components/Modal';
 import classes from '../../components/NewPost.module.css';
@@ -37,7 +36,6 @@ export default async function CreatePostPage() {
 
   return (
     <>
-      <MainHeader />
       <main>
         <PostsList posts={posts} />
       </main>

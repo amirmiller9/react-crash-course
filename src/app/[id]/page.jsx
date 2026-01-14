@@ -1,4 +1,3 @@
-import MainHeader from '../../components/MainHeader';
 import PostsList from '../../components/PostsList';
 import Modal from '../../components/Modal';
 import classes from '../../components/PostDetails.module.css';
@@ -23,7 +22,6 @@ export default async function PostDetailsPage({ params }) {
   if (!post) {
     return (
       <>
-        <MainHeader />
         <main>
           <PostsList posts={posts} />
         </main>
@@ -44,7 +42,6 @@ export default async function PostDetailsPage({ params }) {
 
   return (
     <>
-      <MainHeader />
       <main>
         <PostsList posts={posts} />
       </main>

@@ -1,4 +1,3 @@
-import MainHeader from '../components/MainHeader';
 import PostsList from '../components/PostsList';
 
 export default async function Home() {
@@ -9,11 +8,8 @@ export default async function Home() {
   const posts = resData.posts;
 
   return (
-    <>
-      <MainHeader />
-      <main>
-        <PostsList posts={posts} />
-      </main>
-    </>
+    <main>
+      <PostsList posts={posts} />
+    </main>
   );
 }

@@ -20,11 +20,7 @@ app.get('/posts', async (req, res) => {
   const fileContent = await fs.readFile('posts.json');
   const postData = JSON.parse(fileContent);
   
-  // Adding a small delay (1.5s) to simulate network latency 
-  // This allows us to see the "Loading..." state in the React frontend
-  setTimeout(() => {
-    res.status(200).json({ posts: postData.posts });
-  }, 1500);
+  res.status(200).json({ posts: postData.posts });
 });
 
 // GET /posts/:id - Retrieves a specific post by its ID

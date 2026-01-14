@@ -8,10 +8,15 @@ function MainHeader() {
   return (
     <header className={classes.header}>
       <h1 className={classes.logo}>
-        <MdMessage />
-        React Poster
+        <Link href="/" className={classes.logoLink}>
+          <MdMessage />
+          React Poster
+        </Link>
       </h1>
       <div className={classes.actions}>
+        <Link href="/about" className={classes.link}>
+          About
+        </Link>
         <Image 
           src="/images/amir.png" 
           alt="Amir Miller" 
