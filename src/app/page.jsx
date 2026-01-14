@@ -1,5 +1,5 @@
 import PostsList from '../components/PostsList';
-import MealsHeader from '../components/MealsHeader';
+import ImageSlideshow from '../components/ImageSlideshow';
 import classes from './page.module.css';
 
 export default async function Home() {
@@ -9,11 +9,17 @@ export default async function Home() {
 
   return (
     <main className={classes.main}>
-      <MealsHeader title="Welcome to React Poster">
-        <p className={classes.subtitle}>
-          Share your thoughts, connect with others, and discover amazing content.
-        </p>
-      </MealsHeader>
+      <header className={classes.header}>
+        <div className={classes.slideshow}>
+          <ImageSlideshow />
+        </div>
+        <div className={classes.hero}>
+          <h1>Welcome to React Poster</h1>
+          <p className={classes.subtitle}>
+            Share your thoughts, connect with others, and discover amazing content.
+          </p>
+        </div>
+      </header>
       <section className={classes.content}>
         <PostsList posts={posts} />
       </section>
