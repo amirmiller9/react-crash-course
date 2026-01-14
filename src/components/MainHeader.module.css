@@ -52,19 +52,6 @@
   gap: 1.5rem;
 }
 
-.link {
-  text-decoration: none;
-  color: #f7f1ed;
-  font-weight: bold;
-  opacity: 0.8;
-  transition: all 0.2s ease;
-}
-
-.link:hover {
-  opacity: 1;
-  color: #d19f6e;
-}
-
 .avatar {
   width: 3.5rem;
   height: 3.5rem;

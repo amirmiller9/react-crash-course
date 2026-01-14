@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { MdPostAdd, MdMessage } from 'react-icons/md';
 
+import NavLink from './NavLink';
 import classes from './MainHeader.module.css';
 
 function MainHeader() {
@@ -21,15 +22,9 @@ function MainHeader() {
         </Link>
       </h1>
       <div className={classes.actions}>
-        <Link href="/meals" className={classes.link}>
-          Browse Meals
-        </Link>
-        <Link href="/community" className={classes.link}>
-          Foodies Community
-        </Link>
-        <Link href="/about" className={classes.link}>
-          About
-        </Link>
+        <NavLink href="/meals">Browse Meals</NavLink>
+        <NavLink href="/community">Foodies Community</NavLink>
+        <NavLink href="/about">About</NavLink>
         <Image 
           src="/images/amir.png" 
           alt="Amir Miller" 

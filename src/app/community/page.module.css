@@ -1,12 +1,6 @@
 .main {
-  padding: 2rem;
-  text-align: center;
-}
-
-.title {
-  font-size: 2.5rem;
-  color: #f7f1ed;
-  margin-bottom: 1rem;
+  padding: 0 2rem;
+  text-align: left;
 }
 
 .text {
