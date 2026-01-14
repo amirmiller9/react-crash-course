@@ -1,0 +1,26 @@
+.main {
+  width: 90%;
+  max-width: 75rem;
+  margin: 2rem auto;
+}
+
+.subtitle {
+  color: #d19f6e;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}
+
+.content {
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin: 1rem auto;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+  }
+}
