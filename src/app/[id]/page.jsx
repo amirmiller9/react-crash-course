@@ -7,15 +7,11 @@ export default async function PostDetailsPage({ params }) {
   const { id } = await params;
   
   // Fetch both all posts (to render the background) and the specific post
-  const postsResponse = await fetch('http://localhost:8080/posts', {
-    next: { revalidate: 0 }
-  });
+  const postsResponse = await fetch('http://localhost:8080/posts');
   const postsData = await postsResponse.json();
   const posts = postsData.posts;
 
-  const postResponse = await fetch(`http://localhost:8080/posts/${id}`, {
-    next: { revalidate: 0 }
-  });
+  const postResponse = await fetch(`http://localhost:8080/posts/${id}`);
   const postData = await postResponse.json();
   const post = postData.post;
 

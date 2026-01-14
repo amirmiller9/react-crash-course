@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 import PostsList from '../../components/PostsList';
 import Modal from '../../components/Modal';
 import classes from '../../components/NewPost.module.css';
@@ -24,13 +25,12 @@ async function addPostAction(formData) {
     throw new Error('Failed to save post.');
   }
 
+  revalidatePath('/');
   redirect('/');
 }
 
 export default async function CreatePostPage() {
-  const response = await fetch('http://localhost:8080/posts', {
-    next: { revalidate: 0 }
-  });
+  const response = await fetch('http://localhost:8080/posts');
   const resData = await response.json();
   const posts = resData.posts;
 
