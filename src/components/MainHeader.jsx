@@ -6,10 +6,16 @@ import classes from './MainHeader.module.css';
 
 function MainHeader() {
   return (
-    <header className={classes.header}>
+    <header className={classes.header} style={{ position: 'relative', zIndex: 10 }}>
       <h1 className={classes.logo}>
         <Link href="/" className={classes.logoLink}>
-          <MdMessage />
+          <Image 
+            src="/images/logo.jpg" 
+            alt="React Poster Logo" 
+            width={40} 
+            height={40} 
+            className={classes.logoImage}
+          />
           React Poster
         </Link>
       </h1>

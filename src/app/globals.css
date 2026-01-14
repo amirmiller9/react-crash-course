@@ -17,6 +17,7 @@ body {
   background-attachment: fixed;
   color: #f7f1ed;
   min-height: 100vh;
+  position: relative;
 }
 
 body::before {
