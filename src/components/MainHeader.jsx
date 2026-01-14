@@ -14,6 +14,12 @@ function MainHeader() {
         </Link>
       </h1>
       <div className={classes.actions}>
+        <Link href="/meals" className={classes.link}>
+          Browse Meals
+        </Link>
+        <Link href="/community" className={classes.link}>
+          Foodies Community
+        </Link>
         <Link href="/about" className={classes.link}>
           About
         </Link>
