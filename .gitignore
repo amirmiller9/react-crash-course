@@ -2,6 +2,7 @@
 .next/
 out/
 build/
+.output.txt
 
 # Logs
 logs
