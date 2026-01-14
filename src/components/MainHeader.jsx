@@ -15,6 +15,7 @@ function MainHeader() {
             width={40} 
             height={40} 
             className={classes.logoImage}
+            priority
           />
           React Poster
         </Link>
@@ -35,6 +36,7 @@ function MainHeader() {
           width={56} 
           height={56} 
           className={classes.avatar}
+          priority
         />
         <Link href="/create-post" className={classes.button}>
           <MdPostAdd size={18} />
