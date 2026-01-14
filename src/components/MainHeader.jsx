@@ -6,7 +6,7 @@ import classes from './MainHeader.module.css';
 
 function MainHeader() {
   return (
-    <header className={classes.header} style={{ position: 'relative', zIndex: 10 }}>
+    <header className={classes.header}>
       <h1 className={classes.logo}>
         <Link href="/" className={classes.logoLink}>
           <Image 

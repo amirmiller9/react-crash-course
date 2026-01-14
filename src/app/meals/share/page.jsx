@@ -1,8 +1,10 @@
+import classes from './page.module.css';
+
 export default function ShareMealPage() {
   return (
-    <main style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>Share Your Meal</h1>
-      <p>Share your delicious creations with the community!</p>
+    <main className={classes.main}>
+      <h1 className={classes.title}>Share Your Meal</h1>
+      <p className={classes.text}>Share your delicious creations with the community!</p>
     </main>
   );
 }

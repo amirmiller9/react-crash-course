@@ -1,0 +1,39 @@
+.main {
+  padding: 2rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  margin: 1rem 0;
+  color: #f7f1ed;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.description {
+  font-size: 1.25rem;
+  color: #d19f6e;
+  margin-bottom: 2rem;
+}
+
+.cta {
+  margin-top: 2rem;
+}
+
+.button {
+  display: inline-block;
+  background: linear-gradient(135deg, #a67c52 0%, #8b6643 100%);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  color: #f7f1ed;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: linear-gradient(135deg, #d19f6e 0%, #a67c52 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}

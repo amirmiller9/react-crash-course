@@ -1,19 +1,13 @@
 import Link from 'next/link';
+import classes from './page.module.css';
 
 export default function MealsPage() {
   return (
-    <main style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>Meals Page</h1>
-      <p>Delicious meals, created by you.</p>
-      <p style={{ marginTop: '2rem' }}>
-        <Link href="/meals/share" className="button" style={{
-          background: '#a67c52',
-          padding: '0.75rem 1.5rem',
-          borderRadius: '8px',
-          color: '#1a0c03',
-          textDecoration: 'none',
-          fontWeight: 'bold'
-        }}>
+    <main className={classes.main}>
+      <h1 className={classes.title}>Meals Page</h1>
+      <p className={classes.description}>Delicious meals, created by you.</p>
+      <p className={classes.cta}>
+        <Link href="/meals/share" className={classes.button}>
           Share Your Favorite Recipe
         </Link>
       </p>
