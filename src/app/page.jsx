@@ -1,12 +1,17 @@
+import { Suspense } from 'react';
 import PostsList from '../components/PostsList';
 import ImageSlideshow from '../components/ImageSlideshow';
 import classes from './page.module.css';
 
-export default async function Home() {
+async function Posts() {
   const response = await fetch('http://localhost:8080/posts');
   const resData = await response.json();
   const posts = resData.posts;
 
+  return <PostsList posts={posts} />;
+}
+
+export default function Home() {
   return (
     <main className={classes.main}>
       <header className={classes.header}>
@@ -21,7 +26,9 @@ export default async function Home() {
         </div>
       </header>
       <section className={classes.content}>
-        <PostsList posts={posts} />
+        <Suspense fallback={<p className={classes.loading}>Loading posts...</p>}>
+          <Posts />
+        </Suspense>
       </section>
     </main>
   );
