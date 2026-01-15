@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import PostsList from '../../components/PostsList';
 import Modal from '../../components/Modal';
+import PostFormSubmit from '../../components/PostFormSubmit';
 import classes from '../../components/NewPost.module.css';
 import Link from 'next/link';
 import { addPostAction } from '../../lib/actions';
@@ -41,7 +42,7 @@ export default async function CreatePostPage() {
             <Link href="/" className={classes.button}>
               Cancel
             </Link>
-            <button type="submit">Submit</button>
+            <PostFormSubmit />
           </p>
         </form>
         </Suspense>
