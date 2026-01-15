@@ -1,11 +1,13 @@
-import MealsHeader from '../../components/MealsHeader';
+import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <main className="not-found">
-      <MealsHeader title="Meal not found">
-        <p>Unfortunately, we could not find the requested page or meal data.</p>
-      </MealsHeader>
+    <main className="error-content">
+      <h1>Meal not found</h1>
+      <p>Unfortunately, we could not find the requested page or meal data.</p>
+      <Link href="/meals" className="button">
+        Back to Meals
+      </Link>
     </main>
   );
 }

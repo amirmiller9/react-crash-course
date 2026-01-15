@@ -6,6 +6,11 @@ import Link from 'next/link';
 
 async function Posts() {
   const postsResponse = await fetch('http://localhost:8080/posts');
+
+  if (!postsResponse.ok) {
+    throw new Error('Failed to fetch posts.');
+  }
+
   const postsData = await postsResponse.json();
   const posts = postsData.posts;
   return <PostsList posts={posts} />;
@@ -13,6 +18,11 @@ async function Posts() {
 
 async function PostDetails({ id }) {
   const postResponse = await fetch(`http://localhost:8080/posts/${id}`);
+
+  if (!postResponse.ok) {
+    throw new Error('Failed to fetch post details.');
+  }
+
   const postData = await postResponse.json();
   const post = postData.post;
 

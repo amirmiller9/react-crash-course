@@ -5,6 +5,11 @@ import classes from './page.module.css';
 
 async function Posts() {
   const response = await fetch('http://localhost:8080/posts');
+  
+  if (!response.ok) {
+    throw new Error('Failed to fetch posts.');
+  }
+
   const resData = await response.json();
   const posts = resData.posts;
 

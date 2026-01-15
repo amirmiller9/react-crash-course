@@ -1,0 +1,19 @@
+.button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #a67c52;
+  color: #1a0c03;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.1rem;
+  transition: background 0.2s ease;
+}
+
+.button:hover {
+  background: #d19f6e;
+}
