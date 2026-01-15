@@ -13,6 +13,10 @@
   margin-top: 2rem;
 }
 
+.content {
+  margin-top: 3rem;
+}
+
 .button {
   display: inline-block;
   background: linear-gradient(135deg, #a67c52 0%, #8b6643 100%);
