@@ -2,10 +2,21 @@
 
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
+import { saveMeal } from './meals';
 
 export async function shareMealAction(formData) {
-  // To be implemented when we connect the share meal form
-  console.log('shareMealAction', formData);
+  const meal = {
+    title: formData.get('title'),
+    summary: formData.get('summary'),
+    instructions: formData.get('instructions'),
+    image: formData.get('image'),
+    creator: formData.get('name'),
+    creator_email: formData.get('email'),
+  };
+
+  await saveMeal(meal);
+  revalidatePath('/meals');
+  redirect('/meals');
 }
 
 export async function addPostAction(formData) {
