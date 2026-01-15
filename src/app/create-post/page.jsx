@@ -1,34 +1,9 @@
 import { Suspense } from 'react';
-import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
 import PostsList from '../../components/PostsList';
 import Modal from '../../components/Modal';
 import classes from '../../components/NewPost.module.css';
 import Link from 'next/link';
-
-async function addPostAction(formData) {
-  'use server';
-
-  const postData = {
-    body: formData.get('body'),
-    author: formData.get('author'),
-  };
-
-  const response = await fetch('http://localhost:8080/posts', {
-    method: 'POST',
-    body: JSON.stringify(postData),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to save post.');
-  }
-
-  revalidatePath('/');
-  redirect('/');
-}
+import { addPostAction } from '../../lib/actions';
 
 async function Posts() {
   const response = await fetch('http://localhost:8080/posts');
