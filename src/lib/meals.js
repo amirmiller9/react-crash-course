@@ -16,6 +16,13 @@ export function getMeal(slug) {
 
 export async function saveMeal(meal) {
   meal.slug = slugify(meal.title, { lower: true });
+
+  // Ensure slug uniqueness
+  const existingMeal = db.prepare('SELECT slug FROM meals WHERE slug = ?').get(meal.slug);
+  if (existingMeal) {
+    meal.slug = `${meal.slug}-${Math.random().toString(36).substring(2, 7)}`;
+  }
+
   meal.instructions = xss(meal.instructions);
 
   const extension = meal.image.name.split('.').pop();
