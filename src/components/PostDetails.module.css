@@ -3,6 +3,13 @@
   width: 40rem;
 }
 
+.loading {
+  text-align: center;
+  color: #3e2e22;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+}
+
 .author {
   margin: 0;
   font-size: 0.8rem;

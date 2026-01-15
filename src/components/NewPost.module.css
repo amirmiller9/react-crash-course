@@ -2,6 +2,13 @@
   background: transparent;
 }
 
+.loading {
+  text-align: center;
+  color: #4a2a0d;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+}
+
 .form label {
   display: block;
   width: 100%;

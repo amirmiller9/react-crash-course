@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import PostsList from '../../components/PostsList';
@@ -29,18 +30,25 @@ async function addPostAction(formData) {
   redirect('/');
 }
 
-export default async function CreatePostPage() {
+async function Posts() {
   const response = await fetch('http://localhost:8080/posts');
   const resData = await response.json();
   const posts = resData.posts;
 
+  return <PostsList posts={posts} />;
+}
+
+export default async function CreatePostPage() {
   return (
     <>
       <main>
-        <PostsList posts={posts} />
+        <Suspense fallback={<p className={classes.loading}>Loading posts...</p>}>
+          <Posts />
+        </Suspense>
       </main>
       <Modal>
-        <form action={addPostAction} className={classes.form}>
+        <Suspense fallback={<p className={classes.loading}>Preparing form...</p>}>
+          <form action={addPostAction} className={classes.form}>
           <p>
             <label htmlFor="body">Text</label>
             <textarea id="body" name="body" required rows={3} />
@@ -56,6 +64,7 @@ export default async function CreatePostPage() {
             <button type="submit">Submit</button>
           </p>
         </form>
+        </Suspense>
       </Modal>
     </>
   );

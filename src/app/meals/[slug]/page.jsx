@@ -1,18 +1,18 @@
+import { Suspense } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 import { getMeal } from '../../../lib/meals';
 import classes from './page.module.css';
 
-export default async function MealDetailsPage({ params }) {
-  const { slug } = await params;
+async function Meal({ slug }) {
   const meal = getMeal(slug);
 
   if (!meal) {
     notFound();
   }
 
-  meal.instructions = meal.instructions.replace(/\n/g, '<br />');
+  const instructions = meal.instructions.replace(/\n/g, '<br />');
 
   return (
     <>
@@ -32,10 +32,20 @@ export default async function MealDetailsPage({ params }) {
         <p
           className={classes.instructions}
           dangerouslySetInnerHTML={{
-            __html: meal.instructions,
+            __html: instructions,
           }}
         ></p>
       </main>
     </>
+  );
+}
+
+export default async function MealDetailsPage({ params }) {
+  const { slug } = await params;
+
+  return (
+    <Suspense fallback={<p className={classes.loading}>Loading meal details...</p>}>
+      <Meal slug={slug} />
+    </Suspense>
   );
 }
