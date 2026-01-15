@@ -12,7 +12,7 @@ async function Meal({ slug }) {
     notFound();
   }
 
-  const instructions = meal.instructions.replace(/\n/g, '<br />');
+  meal.instructions = meal.instructions.replace(/\n/g, '<br />');
 
   return (
     <>
@@ -32,7 +32,7 @@ async function Meal({ slug }) {
         <p
           className={classes.instructions}
           dangerouslySetInnerHTML={{
-            __html: instructions,
+            __html: meal.instructions,
           }}
         ></p>
       </main>

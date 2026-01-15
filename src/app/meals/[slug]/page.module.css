@@ -73,6 +73,39 @@
   white-space: pre-wrap;
 }
 
+@media (max-width: 1024px) {
+  .header {
+    padding: 2rem 5%;
+  }
+
+  .main {
+    padding: 2rem 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .image {
+    width: 100%;
+    max-width: 30rem;
+    height: 15rem;
+  }
+
+  .headerText h1 {
+    font-size: 2.5rem;
+  }
+
+  .headerText p {
+    font-size: 1.25rem;
+  }
+}
+
 .loading {
   text-align: center;
   color: #f7f1ed;
