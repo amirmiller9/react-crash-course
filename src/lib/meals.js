@@ -21,36 +21,6 @@ export async function getMeals() {
       creator_email: 'johndoe@example.com',
     },
     {
-      title: 'Spicy Curry',
-      slug: 'spicy-curry',
-      image: 'https://images.unsplash.com/photo-1512058560366-c9b285fbad89?q=80&w=800&auto=format&fit=crop',
-      summary:
-        'A rich and spicy curry, infused with exotic spices and creamy coconut milk.',
-      instructions: `
-        1. Chop vegetables: Cut your favorite vegetables into bite-sized pieces.
-        2. Sauté spices: In a pan, sauté curry paste with a bit of oil until fragrant.
-        3. Add coconut milk: Pour in coconut milk and bring to a simmer.
-        4. Cook vegetables: Add the vegetables and cook until tender.
-      `,
-      creator: 'Max Schwarz',
-      creator_email: 'max@example.com',
-    },
-    {
-      title: 'Homemade Dumplings',
-      slug: 'homemade-dumplings',
-      image: 'https://images.unsplash.com/photo-1563245394-1b3bb6b90105?q=80&w=800&auto=format&fit=crop',
-      summary:
-        'Tender dumplings filled with savory meat and vegetables, steamed to perfection.',
-      instructions: `
-        1. Prepare the filling: Mix ground meat with chopped vegetables and seasoning.
-        2. Fill the dumplings: Place a spoonful of filling in the center of each dumpling wrapper.
-        3. Fold and seal: Moist the edges of the wrapper and fold to seal.
-        4. Steam: Steam the dumplings for 10-12 minutes until cooked through.
-      `,
-      creator: 'Emily Chen',
-      creator_email: 'emilychen@example.com',
-    },
-    {
       title: 'Classic Mac n Cheese',
       slug: 'classic-mac-n-cheese',
       image: 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=800&auto=format&fit=crop',
