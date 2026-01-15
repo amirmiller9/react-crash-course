@@ -45,22 +45,36 @@ export async function shareMealAction(prevState, formData) {
   redirect('/meals');
 }
 
-export async function addPostAction(formData) {
+export async function addPostAction(prevState, formData) {
   const postData = {
     body: formData.get('body'),
     author: formData.get('author'),
   };
 
-  const response = await fetch('http://localhost:8080/posts', {
-    method: 'POST',
-    body: JSON.stringify(postData),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  if (isInvalidText(postData.body) || isInvalidText(postData.author)) {
+    return {
+      message: 'Invalid input.',
+    };
+  }
 
-  if (!response.ok) {
-    throw new Error('Failed to save post.');
+  try {
+    const response = await fetch('http://localhost:8080/posts', {
+      method: 'POST',
+      body: JSON.stringify(postData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      return {
+        message: 'Failed to save post.',
+      };
+    }
+  } catch (error) {
+    return {
+      message: 'Failed to connect to the backend server.',
+    };
   }
 
   revalidatePath('/');
