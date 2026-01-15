@@ -21,40 +21,52 @@
 .preview {
   width: 10rem;
   height: 10rem;
-  border: 2px solid #a6adc8;
+  border: 1px solid #454952;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #a6adc8;
+  color: #b3aea5;
   position: relative;
+  background-color: #1c2027;
+  border-radius: 4px;
 }
 
 .preview img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 4px;
 }
 
 .preview p {
   margin: 0;
   padding: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
 }
 
 .input {
-  display: none;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  position: absolute;
 }
 
 .button {
   border: 0;
   padding: 0.5rem 1.5rem;
-  background-color: #a6adc8;
-  border-radius: 2px;
+  background-color: #454952;
+  color: #ddd6cb;
+  border-radius: 4px;
   cursor: pointer;
   font: inherit;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
 }
 
 .button:hover,
 .button:active {
-  background-color: #7b8196;
+  background-color: #5d626d;
+  color: #ffffff;
 }
