@@ -52,7 +52,7 @@ export default async function FilteredNewsPage({ params }) {
                 src={`/images/slideshow/${newsItem.image}`}
                 alt={newsItem.title}
               />
-              <span>{newsItem.title}</span>
+              <span className={classes.title}>{newsItem.title}</span>
             </Link>
           </li>
         ))}
@@ -63,6 +63,7 @@ export default async function FilteredNewsPage({ params }) {
   return (
     <>
       <header id="archive-header">
+        <h1>News Archive</h1>
         <nav>
           <ul>
             {links.map((link) => {

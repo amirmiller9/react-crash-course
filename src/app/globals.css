@@ -109,3 +109,37 @@ body::before {
   line-height: 1.6;
   margin: 0;
 }
+
+#archive-header h1 {
+  margin: 2rem 0;
+  font-size: 2rem;
+}
+
+#archive-header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+#archive-header a {
+  text-decoration: none;
+  color: #a67c52;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+#archive-header a:hover,
+#archive-header a:active {
+  color: #d19f6e;
+}
+
+#latest-news h2 {
+  margin-top: 2rem;
+}
+
+hr {
+  border-color: #443322;
+  margin: 2rem 0;
+}

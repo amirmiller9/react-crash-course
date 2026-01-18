@@ -10,15 +10,14 @@
 }
 
 .news li {
-  background: #221c18;
+  background: none;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease-out;
 }
 
 .news li:hover {
-  transform: translateY(-4px);
+  transform: scale(1.05);
 }
 
 .news a {
@@ -36,8 +35,13 @@
 }
 
 .news span {
-  padding: 1rem;
+  padding: 1rem 0;
   font-size: 1.1rem;
-  font-weight: bold;
-  text-align: center;
+  font-weight: normal;
+  text-align: left;
+}
+
+.news .title {
+  font-weight: normal;
+  color: #ddd6cb;
 }
