@@ -16,7 +16,8 @@ export default async function FilteredNewsPage({ params }) {
   if (
     (selectedYear && !getAvailableNewsYears().includes(+selectedYear)) ||
     (selectedMonth &&
-      !getAvailableNewsMonths(selectedYear).includes(+selectedMonth))
+      !getAvailableNewsMonths(selectedYear).includes(+selectedMonth)) ||
+    filter?.length > 2
   ) {
     return (
       <div id="error">
