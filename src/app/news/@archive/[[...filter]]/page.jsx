@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import {
   getAvailableNewsMonths,
@@ -19,12 +20,7 @@ export default async function FilteredNewsPage({ params }) {
       !getAvailableNewsMonths(selectedYear).includes(+selectedMonth)) ||
     filter?.length > 2
   ) {
-    return (
-      <div id="error">
-        <h2>Invalid filter.</h2>
-        <p>The selected year or month is not available.</p>
-      </div>
-    );
+    notFound();
   }
 
   let news;
