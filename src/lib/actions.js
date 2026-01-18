@@ -41,7 +41,7 @@ export async function shareMealAction(prevState, formData) {
     };
   }
 
-  revalidatePath('/meals');
+  revalidatePath('/meals', 'layout');
   redirect('/meals');
 }
 
@@ -77,6 +77,6 @@ export async function addPostAction(prevState, formData) {
     };
   }
 
-  revalidatePath('/');
+  revalidatePath('/', 'layout');
   redirect('/');
 }
