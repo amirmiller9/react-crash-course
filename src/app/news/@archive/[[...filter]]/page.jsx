@@ -18,7 +18,12 @@ export default async function FilteredNewsPage({ params }) {
     (selectedMonth &&
       !getAvailableNewsMonths(selectedYear).includes(+selectedMonth))
   ) {
-    throw new Error('Invalid filter.');
+    return (
+      <div id="error">
+        <h2>Invalid filter.</h2>
+        <p>The selected year or month is not available.</p>
+      </div>
+    );
   }
 
   let news;
