@@ -22,6 +22,8 @@ function MainHeader() {
         </Link>
       </h1>
       <div className={classes.actions}>
+        <NavLink href="/">Home</NavLink>
+        <NavLink href="/news">News</NavLink>
         <NavLink href="/meals">Browse Meals</NavLink>
         <NavLink href="/community">Foodies Community</NavLink>
         <NavLink href="/about">About</NavLink>
