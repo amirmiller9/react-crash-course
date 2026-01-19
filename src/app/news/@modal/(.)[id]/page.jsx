@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation';
 
-import { DUMMY_NEWS } from '../../../../dummy-news';
 import Modal from '../../../../components/Modal';
+import { getNewsItem } from '../../../../lib/news';
 
 export default async function InterceptedNewsDetailPage({ params }) {
   const { id: newsSlug } = await params;
-  const newsItem = DUMMY_NEWS.find((newsItem) => newsItem.slug === newsSlug);
+  const newsItem = await getNewsItem(newsSlug);
 
   if (!newsItem) {
     notFound();

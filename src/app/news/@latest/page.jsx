@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getLatestNews } from '../../../lib/news';
 import classes from '../page.module.css';
 
@@ -10,8 +11,10 @@ export default async function LatestNewsPage() {
       <ul className={classes.news}>
         {latestNews.map((newsItem) => (
           <li key={newsItem.id}>
-            <img src={`/images/slideshow/${newsItem.image}`} alt={newsItem.title} />
-            <span>{newsItem.title}</span>
+            <Link href={`/news/${newsItem.slug}`}>
+              <img src={`/images/slideshow/${newsItem.image}`} alt={newsItem.title} />
+              <span>{newsItem.title}</span>
+            </Link>
           </li>
         ))}
       </ul>
