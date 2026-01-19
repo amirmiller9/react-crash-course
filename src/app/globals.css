@@ -139,6 +139,46 @@ body::before {
   margin-top: 2rem;
 }
 
+/* News Detail Styling */
+.news-article {
+  max-width: 50rem;
+  margin: 2rem auto;
+}
+
+.news-header {
+  margin-bottom: 2rem;
+}
+
+.news-image {
+  width: 100%;
+  height: 25rem;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.news-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news-header h1 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.news-header time {
+  color: #a67c52;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.news-content {
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
 hr {
   border-color: #443322;
   margin: 2rem 0;

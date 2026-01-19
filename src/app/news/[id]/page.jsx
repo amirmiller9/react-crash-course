@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 
 import { getNewsItem } from '../../../lib/news';
-import classes from './page.module.css';
 
 export default async function NewsDetailPage({ params }) {
   const { id: newsId } = await params;
@@ -12,16 +12,21 @@ export default async function NewsDetailPage({ params }) {
   }
 
   return (
-    <article className={classes.article}>
-      <header className={classes.header}>
-        <img
-          src={`/images/slideshow/${newsItem.image}`}
-          alt={newsItem.title}
-        />
+    <article className="news-article">
+      <header className="news-header">
+        <div className="news-image">
+          <Image
+            src={`/images/slideshow/${newsItem.image}`}
+            alt={newsItem.title}
+            width={800}
+            height={400}
+            priority
+          />
+        </div>
         <h1>{newsItem.title}</h1>
         <time dateTime={newsItem.date}>{newsItem.date}</time>
       </header>
-      <p className={classes.content}>{newsItem.content}</p>
+      <p className="news-content">{newsItem.content}</p>
     </article>
   );
 }
