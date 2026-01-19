@@ -7,9 +7,9 @@ export const metadata = {
  
 export default function ContentLayout({ children }) {
   return (
-    <div id='page'>
+    <>
       <MainHeader />
       {children}
-    </div>
+    </>
   );
 }
