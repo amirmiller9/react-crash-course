@@ -1,12 +1,12 @@
 'use client';
 
 import { Suspense, useActionState, use } from 'react';
-import PostsList from '../../components/PostsList';
-import Modal from '../../components/Modal';
-import PostFormSubmit from '../../components/PostFormSubmit';
-import classes from '../../components/NewPost.module.css';
+import PostsList from '../../../components/PostsList';
+import Modal from '../../../components/Modal';
+import PostFormSubmit from '../../../components/PostFormSubmit';
+import classes from '../../../components/NewPost.module.css';
 import Link from 'next/link';
-import { addPostAction } from '../../lib/actions';
+import { addPostAction } from '../../../lib/actions';
 
 function Posts() {
   const postsPromise = fetch('http://localhost:8080/posts')

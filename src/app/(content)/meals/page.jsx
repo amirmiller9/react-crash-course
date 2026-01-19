@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 
-import MealsHeader from '../../components/MealsHeader';
-import MealsGrid from '../../components/MealsGrid';
-import { getMeals } from '../../lib/meals';
+import MealsHeader from '../../../components/MealsHeader';
+import MealsGrid from '../../../components/MealsGrid';
+import { getMeals } from '../../../lib/meals';
 import classes from './page.module.css';
 
 export const metadata = {

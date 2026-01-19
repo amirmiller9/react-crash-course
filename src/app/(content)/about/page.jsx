@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import MealsHeader from '../../components/MealsHeader';
+import MealsHeader from '../../../components/MealsHeader';
 import classes from './About.module.css';
 
 export default function AboutPage() {

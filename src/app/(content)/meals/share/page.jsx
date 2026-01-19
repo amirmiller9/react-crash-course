@@ -2,10 +2,10 @@
 
 import { useActionState } from 'react';
 
-import ImagePicker from '../../../components/ImagePicker';
-import MealsFormSubmit from '../../../components/MealsFormSubmit';
+import ImagePicker from '../../../../components/ImagePicker';
+import MealsFormSubmit from '../../../../components/MealsFormSubmit';
 import classes from './page.module.css';
-import { shareMealAction } from '../../../lib/actions';
+import { shareMealAction } from '../../../../lib/actions';
 
 export default function ShareMealPage() {
   const [state, formAction] = useActionState(shareMealAction, { message: null });

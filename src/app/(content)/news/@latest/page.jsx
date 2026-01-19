@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getLatestNews } from '../../../lib/news';
+import { getLatestNews } from '../../../../lib/news';
 import classes from '../page.module.css';
 
 export default async function LatestNewsPage() {

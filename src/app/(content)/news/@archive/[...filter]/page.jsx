@@ -5,7 +5,7 @@ import {
   getAvailableNewsYears,
   getNewsForYear,
   getNewsForYearAndMonth,
-} from '../../../../lib/news';
+} from '../../../../../lib/news';
 import classes from '../../page.module.css';
 
 export default async function FilteredNewsPage({ params }) {
@@ -26,7 +26,21 @@ export default async function FilteredNewsPage({ params }) {
     (selectedMonth && !availableMonths.includes(selectedMonth)) ||
     filter?.length > 2
   ) {
-    throw new Error('Invalid filter.');
+    return (
+      <header id="archive-header">
+        <h1>News Archive</h1>
+        <nav>
+          <ul>
+            {availableYears.map((year) => (
+              <li key={year}>
+                <Link href={`/news/${year}`}>{year}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <p>Invalid filter.</p>
+      </header>
+    );
   }
 
   let news;
@@ -77,9 +91,18 @@ export default async function FilteredNewsPage({ params }) {
                 ? `/news/${selectedYear}/${link}`
                 : `/news/${link}`;
 
+              const isActive =
+                (selectedYear === link && !selectedMonth) ||
+                (selectedMonth === link);
+
               return (
                 <li key={link}>
-                  <Link href={href}>{link}</Link>
+                  <Link
+                    href={href}
+                    className={isActive ? 'active' : undefined}
+                  >
+                    {link}
+                  </Link>
                 </li>
               );
             })}

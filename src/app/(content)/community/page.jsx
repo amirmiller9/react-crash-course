@@ -1,4 +1,4 @@
-import MealsHeader from '../../components/MealsHeader';
+import MealsHeader from '../../../components/MealsHeader';
 import classes from './page.module.css';
 
 export const metadata = {

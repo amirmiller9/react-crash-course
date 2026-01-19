@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import PostsList from '../components/PostsList';
-import ImageSlideshow from '../components/ImageSlideshow';
+import PostsList from '../../components/PostsList';
+import ImageSlideshow from '../../components/ImageSlideshow';
 import classes from './page.module.css';
 
 async function Posts() {

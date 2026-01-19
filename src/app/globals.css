@@ -131,7 +131,8 @@ body::before {
 }
 
 #archive-header a:hover,
-#archive-header a:active {
+#archive-header a:active,
+#archive-header a.active {
   color: #d19f6e;
 }
 

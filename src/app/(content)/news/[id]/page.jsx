@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { getNewsItem } from '../../../lib/news';
+import { getNewsItem } from '../../../../lib/news';
 
 export default async function NewsDetailPage({ params }) {
   const { id: newsId } = await params;
