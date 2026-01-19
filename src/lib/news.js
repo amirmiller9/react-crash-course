@@ -1,14 +1,17 @@
 import { DUMMY_NEWS } from '../dummy-news';
 
-export function getAllNews() {
+export async function getAllNews() {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   return DUMMY_NEWS;
 }
 
-export function getLatestNews() {
+export async function getLatestNews() {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   return DUMMY_NEWS.slice(0, 3);
 }
 
-export function getAvailableNewsYears() {
+export async function getAvailableNewsYears() {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   return DUMMY_NEWS.reduce((years, news) => {
     const year = new Date(news.date).getFullYear();
     if (!years.includes(year)) {
@@ -18,7 +21,8 @@ export function getAvailableNewsYears() {
   }, []).sort((a, b) => b - a);
 }
 
-export function getAvailableNewsMonths(year) {
+export async function getAvailableNewsMonths(year) {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   return DUMMY_NEWS.reduce((months, news) => {
     const newsDate = new Date(news.date);
     if (newsDate.getFullYear() === +year) {
@@ -31,13 +35,15 @@ export function getAvailableNewsMonths(year) {
   }, []).sort((a, b) => a - b);
 }
 
-export function getNewsForYear(year) {
+export async function getNewsForYear(year) {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   return DUMMY_NEWS.filter(
     (news) => new Date(news.date).getFullYear() === +year
   );
 }
 
-export function getNewsForYearAndMonth(year, month) {
+export async function getNewsForYearAndMonth(year, month) {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   return DUMMY_NEWS.filter((news) => {
     const newsDate = new Date(news.date);
     return (

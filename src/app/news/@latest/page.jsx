@@ -1,8 +1,8 @@
 import { getLatestNews } from '../../../lib/news';
 import classes from '../page.module.css';
 
-export default function LatestNewsPage() {
-  const latestNews = getLatestNews();
+export default async function LatestNewsPage() {
+  const latestNews = await getLatestNews();
 
   return (
     <>
