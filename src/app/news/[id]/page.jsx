@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import Image from 'next/image';
 
 import { getNewsItem } from '../../../lib/news';
@@ -15,13 +16,15 @@ export default async function NewsDetailPage({ params }) {
     <article className="news-article">
       <header className="news-header">
         <div className="news-image">
-          <Image
-            src={`/images/slideshow/${newsItem.image}`}
-            alt={newsItem.title}
-            width={800}
-            height={400}
-            priority
-          />
+          <Link href={`/news/${newsItem.slug}/image`}>
+            <Image
+              src={`/images/slideshow/${newsItem.image}`}
+              alt={newsItem.title}
+              width={800}
+              height={400}
+              priority
+            />
+          </Link>
         </div>
         <h1>{newsItem.title}</h1>
         <time dateTime={newsItem.date}>{newsItem.date}</time>

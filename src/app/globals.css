@@ -183,3 +183,17 @@ hr {
   border-color: #443322;
   margin: 2rem 0;
 }
+
+.fullscreen-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullscreen-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
