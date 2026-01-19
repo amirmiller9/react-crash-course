@@ -1,3 +1,3 @@
-import FilteredNewsPage from './[[...filter]]/page';
+import FilteredNewsPage from './[...filter]/page';
 
 export default FilteredNewsPage;
