@@ -1,9 +1,14 @@
 import Link from 'next/link';
-import { getLatestNews } from '../../../../lib/news';
 import classes from '../page.module.css';
 
 export default async function LatestNewsPage() {
-  const latestNews = await getLatestNews();
+  const response = await fetch('http://localhost:3000/api/news/latest');
+  
+  if (!response.ok) {
+    throw new Error('Failed to fetch latest news.');
+  }
+
+  const latestNews = await response.json();
 
   return (
     <>

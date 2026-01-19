@@ -2,15 +2,16 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
 import Modal from '../../../../../components/Modal';
-import { getNewsItem } from '../../../../../lib/news';
 
 export default async function InterceptedNewsDetailPage({ params }) {
   const { id: newsSlug } = await params;
-  const newsItem = await getNewsItem(newsSlug);
+  const response = await fetch(`http://localhost:3000/api/news/${newsSlug}`);
 
-  if (!newsItem) {
+  if (!response.ok) {
     notFound();
   }
+
+  const newsItem = await response.json();
 
   return (
     <Modal>

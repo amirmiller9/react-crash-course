@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 import MealsHeader from '../../../components/MealsHeader';
 import MealsGrid from '../../../components/MealsGrid';
-import { getMeals } from '../../../lib/meals';
 import classes from './page.module.css';
 
 export const metadata = {
@@ -12,7 +11,13 @@ export const metadata = {
 };
 
 async function Meals() {
-  const meals = await getMeals();
+  const response = await fetch('http://localhost:3000/api/meals');
+  
+  if (!response.ok) {
+    throw new Error('Failed to fetch meals.');
+  }
+
+  const meals = await response.json();
 
   return <MealsGrid meals={meals} />;
 }

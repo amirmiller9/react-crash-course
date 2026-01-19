@@ -2,16 +2,17 @@ import { Suspense } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-import { getMeal } from '../../../../lib/meals';
 import classes from './page.module.css';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const meal = getMeal(slug);
+  const response = await fetch(`http://localhost:3000/api/meals/${slug}`);
 
-  if (!meal) {
+  if (!response.ok) {
     notFound();
   }
+
+  const meal = await response.json();
 
   return {
     title: meal.title,
@@ -20,11 +21,13 @@ export async function generateMetadata({ params }) {
 }
 
 async function Meal({ slug }) {
-  const meal = getMeal(slug);
+  const response = await fetch(`http://localhost:3000/api/meals/${slug}`);
 
-  if (!meal) {
+  if (!response.ok) {
     notFound();
   }
+
+  const meal = await response.json();
 
   meal.instructions = meal.instructions.replace(/\n/g, '<br />');
 
