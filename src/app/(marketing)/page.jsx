@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import PostsList from '../../components/PostsList';
 import ImageSlideshow from '../../components/ImageSlideshow';
 import classes from './page.module.css';
@@ -24,7 +25,9 @@ export default function Home() {
         </div>
       </header>
       <section className={classes.content}>
-        <Posts />
+        <Suspense fallback={<p style={{ textAlign: 'center', color: 'white' }}>Loading posts...</p>}>
+          <Posts />
+        </Suspense>
       </section>
     </main>
   );
