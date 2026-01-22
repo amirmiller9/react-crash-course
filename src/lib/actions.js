@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { saveMeal } from './meals';
-import { savePost, likePost } from './posts';
+import { savePost, likePost, deletePost } from './posts';
 
 function isInvalidText(text) {
   return !text || text.trim() === '';
@@ -72,5 +72,10 @@ export async function addPostAction(prevState, formData) {
 
 export async function toggleLikeAction(postId) {
   await likePost(postId);
+  revalidatePath('/', 'layout');
+}
+
+export async function deletePostAction(postId) {
+  await deletePost(postId);
   revalidatePath('/', 'layout');
 }

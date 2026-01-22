@@ -51,3 +51,7 @@ export async function savePost(post) {
 export async function likePost(id) {
   db.prepare('UPDATE posts SET likes = likes + 1 WHERE id = ?').run(id);
 }
+
+export async function deletePost(id) {
+  db.prepare('DELETE FROM posts WHERE id = ?').run(id);
+}
