@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-import Modal from '../../../../components/Modal';
-import { getNewsItem } from '../../../../lib/news';
+import Modal from '../../../../../components/Modal';
+import { getNewsItem } from '../../../../../lib/news';
 
 export default async function InterceptedImagePage({ params }) {
   const { id: newsId } = await params;

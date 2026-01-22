@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { getNewsItem } from '../../../../lib/news';
+import { getNewsItem } from '../../../../../lib/news';
 
 export default async function ImagePage({ params }) {
   const { id: newsId } = await params;
