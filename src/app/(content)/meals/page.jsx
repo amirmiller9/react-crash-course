@@ -4,6 +4,7 @@ import Link from 'next/link';
 import MealsHeader from '../../../components/MealsHeader';
 import MealsGrid from '../../../components/MealsGrid';
 import classes from './page.module.css';
+import { getMeals } from '../../../lib/meals';
 
 export const metadata = {
   title: 'All Meals',
@@ -11,13 +12,7 @@ export const metadata = {
 };
 
 async function Meals() {
-  const response = await fetch('http://localhost:3000/api/meals');
-  
-  if (!response.ok) {
-    throw new Error('Failed to fetch meals.');
-  }
-
-  const meals = await response.json();
+  const meals = await getMeals();
 
   return <MealsGrid meals={meals} />;
 }

@@ -3,16 +3,15 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 import classes from './page.module.css';
+import { getMeal } from '../../../../lib/meals';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const response = await fetch(`http://localhost:3000/api/meals/${slug}`);
+  const meal = getMeal(slug);
 
-  if (!response.ok) {
+  if (!meal) {
     notFound();
   }
-
-  const meal = await response.json();
 
   return {
     title: meal.title,
@@ -21,13 +20,11 @@ export async function generateMetadata({ params }) {
 }
 
 async function Meal({ slug }) {
-  const response = await fetch(`http://localhost:3000/api/meals/${slug}`);
+  const meal = getMeal(slug);
 
-  if (!response.ok) {
+  if (!meal) {
     notFound();
   }
-
-  const meal = await response.json();
 
   meal.instructions = meal.instructions.replace(/\n/g, '<br />');
 

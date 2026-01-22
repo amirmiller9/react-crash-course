@@ -1,16 +1,15 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getNewsItem } from '../../../../lib/news';
 
 export default async function NewsDetailPage({ params }) {
   const { id: newsId } = await params;
-  const response = await fetch(`http://localhost:3000/api/news/${newsId}`);
+  const newsItem = await getNewsItem(newsId);
 
-  if (!response.ok) {
+  if (!newsItem) {
     notFound();
   }
-
-  const newsItem = await response.json();
 
   return (
     <article className="news-article">

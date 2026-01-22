@@ -5,6 +5,19 @@ import xss from 'xss';
 
 const db = sql('meals.db');
 
+db.prepare(`
+   CREATE TABLE IF NOT EXISTS meals (
+       id INTEGER PRIMARY KEY AUTOINCREMENT,
+       slug TEXT NOT NULL UNIQUE,
+       title TEXT NOT NULL,
+       image TEXT NOT NULL,
+       summary TEXT NOT NULL,
+       instructions TEXT NOT NULL,
+       creator TEXT NOT NULL,
+       creator_email TEXT NOT NULL
+    )
+`).run();
+
 export async function getMeals() {
   return db.prepare('SELECT * FROM meals').all();
 }
