@@ -1,8 +1,19 @@
 'use client';
 
 import { useOptimistic } from 'react';
+import { useFormStatus } from 'react-dom';
 import classes from './Post.module.css';
 import { toggleLikeAction } from '../lib/actions';
+
+function LikeButtonContent({ optimisticLikes }) {
+  const { pending } = useFormStatus();
+
+  return (
+    <button className={classes.likeButton} disabled={pending}>
+      ❤️ {optimisticLikes || 0}
+    </button>
+  );
+}
 
 export default function LikeButton({ id, likes }) {
   const [optimisticLikes, addOptimisticLike] = useOptimistic(
@@ -17,9 +28,7 @@ export default function LikeButton({ id, likes }) {
 
   return (
     <form action={handleLike}>
-      <button className={classes.likeButton}>
-        ❤️ {optimisticLikes || 0}
-      </button>
+      <LikeButtonContent optimisticLikes={optimisticLikes} />
     </form>
   );
 }

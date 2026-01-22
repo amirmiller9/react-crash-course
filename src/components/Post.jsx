@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import classes from './Post.module.css';
 import LikeButton from './LikeButton';
+import DeleteButton from './DeleteButton';
 import { deletePostAction } from '../lib/actions';
 
 function Post({ id, author, body, likes }) {
@@ -14,9 +15,7 @@ function Post({ id, author, body, likes }) {
       </Link>
       <div className={classes.actions}>
         <form action={deletePost}>
-          <button type="submit" className={classes.deleteButton}>
-            Delete
-          </button>
+          <DeleteButton />
         </form>
         <LikeButton id={id} likes={likes} />
       </div>
