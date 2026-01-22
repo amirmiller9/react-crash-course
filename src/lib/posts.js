@@ -6,7 +6,8 @@ db.prepare(`
   CREATE TABLE IF NOT EXISTS posts (
     id TEXT PRIMARY KEY,
     author TEXT NOT NULL,
-    body TEXT NOT NULL
+    body TEXT NOT NULL,
+    likes INTEGER DEFAULT 0
   )
 `).run();
 
@@ -22,7 +23,7 @@ if (count === 0) {
     { id: '6', author: 'Junie', body: 'I\'ve helped setting up the backend for this app!' }
   ];
 
-  const insert = db.prepare('INSERT INTO posts (id, author, body) VALUES (@id, @author, @body)');
+  const insert = db.prepare('INSERT INTO posts (id, author, body, likes) VALUES (@id, @author, @body, 0)');
   for (const post of initialPosts) {
     insert.run(post);
   }
@@ -41,7 +42,11 @@ export async function savePost(post) {
     post.id = Math.random().toString();
   }
   db.prepare(`
-    INSERT INTO posts (id, author, body)
-    VALUES (@id, @author, @body)
+    INSERT INTO posts (id, author, body, likes)
+    VALUES (@id, @author, @body, 0)
   `).run(post);
+}
+
+export async function likePost(id) {
+  db.prepare('UPDATE posts SET likes = likes + 1 WHERE id = ?').run(id);
 }

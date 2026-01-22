@@ -12,6 +12,7 @@ function PostsList({ posts }) {
               id={post.id}
               author={post.author}
               body={post.body}
+              likes={post.likes}
             />
           ))}
         </ul>
