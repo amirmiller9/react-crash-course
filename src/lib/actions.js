@@ -3,6 +3,7 @@
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { saveMeal } from './meals';
+import { savePost } from './posts';
 
 function isInvalidText(text) {
   return !text || text.trim() === '';
@@ -58,22 +59,10 @@ export async function addPostAction(prevState, formData) {
   }
 
   try {
-    const response = await fetch('http://localhost:8080/posts', {
-      method: 'POST',
-      body: JSON.stringify(postData),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      return {
-        message: 'Failed to save post.',
-      };
-    }
+    await savePost(postData);
   } catch (error) {
     return {
-      message: 'Failed to connect to the backend server.',
+      message: 'Failed to save post.',
     };
   }
 

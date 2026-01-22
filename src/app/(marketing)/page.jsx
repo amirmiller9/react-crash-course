@@ -1,16 +1,12 @@
 import PostsList from '../../components/PostsList';
 import ImageSlideshow from '../../components/ImageSlideshow';
 import classes from './page.module.css';
+import { getPosts } from '../../lib/posts';
 
 async function Posts() {
-  const response = await fetch('http://localhost:8080/posts');
-  const resData = await response.json();
+  const posts = await getPosts();
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch posts.');
-  }
-
-  return <PostsList posts={resData.posts} />;
+  return <PostsList posts={posts} />;
 }
 
 export default function Home() {

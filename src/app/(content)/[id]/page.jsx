@@ -1,29 +1,18 @@
-import { Suspense, use } from 'react';
+import { Suspense } from 'react';
 import PostsList from '../../../components/PostsList';
 import Modal from '../../../components/Modal';
 import classes from '../../../components/PostDetails.module.css';
 import Link from 'next/link';
+import { getPost, getPosts } from '../../../lib/posts';
 
 async function Posts() {
-  const response = await fetch('http://localhost:8080/posts');
-  const resData = await response.json();
+  const posts = await getPosts();
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch posts.');
-  }
-
-  return <PostsList posts={resData.posts} />;
+  return <PostsList posts={posts} />;
 }
 
 async function PostDetails({ id }) {
-  const postResponse = await fetch(`http://localhost:8080/posts/${id}`);
-
-  if (!postResponse.ok) {
-    throw new Error('Failed to fetch post details.');
-  }
-
-  const postData = await postResponse.json();
-  const post = postData.post;
+  const post = await getPost(id);
 
   if (!post) {
     return (
