@@ -4,6 +4,7 @@ import slugify from 'slugify';
 import xss from 'xss';
 
 const db = sql('meals.db');
+db.pragma('journal_mode = WAL');
 
 db.prepare(`
    CREATE TABLE IF NOT EXISTS meals (

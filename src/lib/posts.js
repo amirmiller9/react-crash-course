@@ -1,6 +1,7 @@
 import sql from 'better-sqlite3';
 
 const db = sql('meals.db');
+db.pragma('journal_mode = WAL');
 
 db.prepare(`
   CREATE TABLE IF NOT EXISTS posts (
