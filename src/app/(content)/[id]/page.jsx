@@ -1,19 +1,18 @@
-import { Suspense } from 'react';
+import { Suspense, use } from 'react';
 import PostsList from '../../../components/PostsList';
 import Modal from '../../../components/Modal';
 import classes from '../../../components/PostDetails.module.css';
 import Link from 'next/link';
 
 async function Posts() {
-  const postsResponse = await fetch('http://localhost:8080/posts');
+  const response = await fetch('http://localhost:8080/posts');
+  const resData = await response.json();
 
-  if (!postsResponse.ok) {
+  if (!response.ok) {
     throw new Error('Failed to fetch posts.');
   }
 
-  const postsData = await postsResponse.json();
-  const posts = postsData.posts;
-  return <PostsList posts={posts} />;
+  return <PostsList posts={resData.posts} />;
 }
 
 async function PostDetails({ id }) {
@@ -54,7 +53,7 @@ export default async function PostDetailsPage({ params }) {
   return (
     <>
       <main>
-        <Suspense fallback={<p className={classes.loading}>Loading posts...</p>}>
+        <Suspense fallback={<p style={{ textAlign: 'center', color: 'white' }}>Loading posts...</p>}>
           <Posts />
         </Suspense>
       </main>

@@ -8,29 +8,20 @@ import classes from '../../../components/NewPost.module.css';
 import Link from 'next/link';
 import { addPostAction } from '../../../lib/actions';
 
-function Posts() {
-  const postsPromise = fetch('http://localhost:8080/posts')
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Failed to fetch posts.');
-      }
-      return response.json();
-    })
-    .then((resData) => resData.posts);
-  
-  const posts = use(postsPromise);
-
+function PostsWithUse({ promise }) {
+  const posts = use(promise);
   return <PostsList posts={posts} />;
 }
 
 export default function CreatePostPage() {
   const [state, formAction] = useActionState(addPostAction, { message: null });
+  const postsPromise = fetch('http://localhost:8080/posts').then(res => res.json()).then(data => data.posts);
 
   return (
     <>
       <main>
-        <Suspense fallback={<p className={classes.loading}>Loading posts...</p>}>
-          <Posts />
+        <Suspense fallback={<p style={{ textAlign: 'center', color: 'white' }}>Loading posts...</p>}>
+          <PostsWithUse promise={postsPromise} />
         </Suspense>
       </main>
       <Modal>
