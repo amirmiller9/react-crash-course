@@ -31,6 +31,18 @@ npm run dev
 *   **Frontend**: Runs on [http://localhost:3000](http://localhost:3000)
 *   **Backend**: Runs on [http://localhost:8080](http://localhost:8080)
 
+## Cloudinary Setup (Meals Images)
+
+To store uploaded meal images in Cloudinary, add a `.env.local` file in the project root with:
+
+```bash
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+# Optional: defaults to "meals"
+CLOUDINARY_FOLDER=meals
+```
+
 ### 3. Stop the Application
 
 To stop all running services, press `Ctrl + C` in the terminal window where you ran `npm run dev`.

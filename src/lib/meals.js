@@ -1,7 +1,7 @@
-import fs from 'node:fs';
 import sql from 'better-sqlite3';
 import slugify from 'slugify';
 import xss from 'xss';
+import { uploadImage } from './cloudinary';
 
 const db = sql('meals.db');
 db.pragma('journal_mode = WAL');
@@ -38,23 +38,14 @@ export async function saveMeal(meal) {
 
   meal.instructions = xss(meal.instructions);
 
-  const extension = meal.image.name.split('.').pop();
-  const fileName = `${meal.slug}.${extension}`;
-
   const bufferedImage = await meal.image.arrayBuffer();
-
-  const stream = fs.createWriteStream(`public/images/${fileName}`);
-
-  await new Promise((resolve, reject) => {
-    stream.write(Buffer.from(bufferedImage), (error) => {
-      if (error) {
-        reject(error);
-      }
-      resolve();
-    });
+  const uploadResult = await uploadImage({
+    buffer: Buffer.from(bufferedImage),
+    folder: process.env.CLOUDINARY_FOLDER || 'meals',
+    publicId: meal.slug,
   });
 
-  meal.image = `/images/${fileName}`;
+  meal.image = uploadResult.secure_url;
 
   db.prepare(`
     INSERT INTO meals
