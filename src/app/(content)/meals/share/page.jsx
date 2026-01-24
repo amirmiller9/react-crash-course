@@ -5,7 +5,7 @@ import { useActionState } from 'react';
 import ImagePicker from '../../../../components/ImagePicker';
 import MealsFormSubmit from '../../../../components/MealsFormSubmit';
 import classes from './page.module.css';
-import { shareMealAction } from '../../../../lib/actions';
+import { shareMealAction } from '../../../../actions/meals';
 
 const initialState = { message: null, errors: {} };
 

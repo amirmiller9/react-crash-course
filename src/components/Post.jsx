@@ -2,7 +2,7 @@ import Link from 'next/link';
 import classes from './Post.module.css';
 import LikeButton from './LikeButton';
 import DeleteButton from './DeleteButton';
-import { deletePostAction } from '../lib/actions';
+import { deletePostAction } from '../actions/posts';
 
 function Post({ id, author, body, likes }) {
   const deletePost = deletePostAction.bind(null, id);

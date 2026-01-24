@@ -4,7 +4,7 @@ import { useActionState } from 'react';
 import Link from 'next/link';
 import PostFormSubmit from './PostFormSubmit';
 import classes from './NewPost.module.css';
-import { addPostAction } from '../lib/actions';
+import { addPostAction } from '../actions/posts';
 
 const initialState = { message: null, errors: {} };
 

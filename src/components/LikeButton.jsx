@@ -3,7 +3,7 @@
 import { useOptimistic } from 'react';
 import { useFormStatus } from 'react-dom';
 import classes from './Post.module.css';
-import { toggleLikeAction } from '../lib/actions';
+import { toggleLikeAction } from '../actions/posts';
 
 function LikeButtonContent({ optimisticLikes }) {
   const { pending } = useFormStatus();
