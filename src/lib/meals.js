@@ -1,11 +1,8 @@
-import sql from 'better-sqlite3';
+import db from './db';
 import { unstable_cache } from 'next/cache';
 import slugify from 'slugify';
 import xss from 'xss';
 import { uploadImage } from './cloudinary';
-
-const db = sql('meals.db');
-db.pragma('journal_mode = WAL');
 
 db.prepare(`
    CREATE TABLE IF NOT EXISTS meals (
