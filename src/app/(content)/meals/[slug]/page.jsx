@@ -7,7 +7,7 @@ import { getMeal } from '../../../../lib/meals';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const meal = getMeal(slug);
+  const meal = await getMeal(slug);
 
   if (!meal) {
     notFound();
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
 }
 
 async function Meal({ slug }) {
-  const meal = getMeal(slug);
+  const meal = await getMeal(slug);
 
   if (!meal) {
     notFound();

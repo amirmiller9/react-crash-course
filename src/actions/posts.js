@@ -34,27 +34,37 @@ export async function addPostAction(prevState, formData) {
     const savedPost = await savePost(postData);
     revalidateTag('posts');
     revalidateTag(`post-${savedPost.id}`);
+    revalidatePath('/', 'layout');
+    redirect('/');
   } catch (error) {
+    if (error.digest?.startsWith('NEXT_REDIRECT')) {
+      throw error;
+    }
     return {
       message: 'Failed to save post.',
       errors: {},
     };
   }
-
-  revalidatePath('/', 'layout');
-  redirect('/');
 }
 
 export async function toggleLikeAction(postId) {
-  await likePost(postId);
-  revalidateTag('posts');
-  revalidateTag(`post-${postId}`);
-  revalidatePath('/', 'layout');
+  try {
+    await likePost(postId);
+    revalidateTag('posts');
+    revalidateTag(`post-${postId}`);
+    revalidatePath('/', 'layout');
+  } catch (error) {
+    console.error('Failed to like post:', error);
+  }
 }
 
 export async function deletePostAction(postId) {
-  await deletePost(postId);
-  revalidateTag('posts');
-  revalidateTag(`post-${postId}`);
-  revalidatePath('/', 'layout');
+  try {
+    await deletePost(postId);
+    revalidateTag('posts');
+    revalidateTag(`post-${postId}`);
+    revalidatePath('/', 'layout');
+  } catch (error) {
+    console.error('Failed to delete post:', error);
+  }
 }

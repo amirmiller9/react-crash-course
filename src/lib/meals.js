@@ -27,14 +27,12 @@ export async function getMeals() {
   return getMealsCached();
 }
 
-export function getMeal(slug) {
-  const getMealCached = unstable_cache(
+export async function getMeal(slug) {
+  return unstable_cache(
     async () => db.prepare('SELECT * FROM meals WHERE slug = ?').get(slug),
     ['meal', slug],
     { tags: [`meal-${slug}`] }
-  );
-
-  return getMealCached();
+  )();
 }
 
 export async function deleteMeal(slug) {

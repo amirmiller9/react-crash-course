@@ -39,13 +39,11 @@ export async function getPosts() {
 }
 
 export async function getPost(id) {
-  const getPostCached = unstable_cache(
+  return unstable_cache(
     async () => db.prepare('SELECT * FROM posts WHERE id = ?').get(id),
     ['post', id],
     { tags: [`post-${id}`] }
-  );
-
-  return getPostCached();
+  )();
 }
 
 export async function savePost(post) {

@@ -51,35 +51,41 @@ export async function shareMealAction(prevState, formData) {
     const savedMeal = await saveMeal(meal);
     revalidateTag('meals');
     revalidateTag(`meal-${savedMeal.slug}`);
+    revalidatePath('/meals', 'layout');
+    redirect('/meals');
   } catch (error) {
+    if (error.digest?.startsWith('NEXT_REDIRECT')) {
+      throw error;
+    }
     return {
       message: 'Failed to save meal. Please try again later.',
       errors: {},
     };
   }
-
-  revalidatePath('/meals', 'layout');
-  redirect('/meals');
 }
 
 export async function deleteMealAction(slug) {
-  const deletedMeal = await deleteMeal(slug);
+  try {
+    const deletedMeal = await deleteMeal(slug);
 
-  if (!deletedMeal) {
-    return;
-  }
-
-  if (deletedMeal.image?.includes('res.cloudinary.com')) {
-    const folder = process.env.CLOUDINARY_FOLDER || 'meals';
-    const publicId = `${folder}/${slug}`;
-    try {
-      await deleteImage(publicId);
-    } catch (error) {
-      // ignore image deletion failures so DB stays consistent
+    if (!deletedMeal) {
+      return;
     }
-  }
 
-  revalidateTag('meals');
-  revalidateTag(`meal-${slug}`);
-  revalidatePath('/meals', 'layout');
+    if (deletedMeal.image?.includes('res.cloudinary.com')) {
+      const folder = process.env.CLOUDINARY_FOLDER || 'meals';
+      const publicId = `${folder}/${slug}`;
+      try {
+        await deleteImage(publicId);
+      } catch (error) {
+        // ignore image deletion failures so DB stays consistent
+      }
+    }
+
+    revalidateTag('meals');
+    revalidateTag(`meal-${slug}`);
+    revalidatePath('/meals', 'layout');
+  } catch (error) {
+    console.error('Failed to delete meal:', error);
+  }
 }
