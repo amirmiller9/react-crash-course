@@ -1,11 +1,13 @@
+'use client';
+
+import { useTransition } from 'react';
 import Link from 'next/link';
 import classes from './Post.module.css';
 import LikeButton from './LikeButton';
-import DeleteButton from './DeleteButton';
 import { deletePostAction } from '../actions/posts';
 
 function Post({ id, author, body, likes }) {
-  const deletePost = deletePostAction.bind(null, id);
+  const [isPending, startTransition] = useTransition();
 
   return (
     <li className={classes.post}>
@@ -14,9 +16,13 @@ function Post({ id, author, body, likes }) {
         <p className={classes.text}>{body}</p>
       </Link>
       <div className={classes.actions}>
-        <form action={deletePost}>
-          <DeleteButton />
-        </form>
+        <button
+          className={classes.deleteButton}
+          onClick={() => startTransition(() => deletePostAction(id))}
+          disabled={isPending}
+        >
+          {isPending ? 'Deleting...' : 'Delete'}
+        </button>
         <LikeButton id={id} likes={likes} />
       </div>
     </li>

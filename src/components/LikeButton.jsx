@@ -21,13 +21,13 @@ export default function LikeButton({ id, likes }) {
     (state, _) => state + 1
   );
 
-  async function handleLike() {
-    addOptimisticLike(null);
-    await toggleLikeAction(id);
-  }
-
   return (
-    <form action={handleLike}>
+    <form
+      action={async () => {
+        addOptimisticLike(null);
+        await toggleLikeAction(id);
+      }}
+    >
       <LikeButtonContent optimisticLikes={optimisticLikes} />
     </form>
   );
