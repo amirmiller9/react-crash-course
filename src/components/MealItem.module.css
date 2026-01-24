@@ -59,6 +59,7 @@
   justify-content: flex-end;
   gap: 0.75rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .actions a {
@@ -69,6 +70,7 @@
   color: #ffffff;
   font-weight: bold;
   text-decoration: none;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
 }
 
 .actions a:hover,
@@ -78,18 +80,22 @@
 }
 
 .deleteButton {
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid #4c2b1f;
-  background: transparent;
-  color: #f0d8cc;
-  font-weight: bold;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(240, 216, 204, 0.35);
+  background: rgba(26, 16, 5, 0.6);
+  color: #d8c0b2;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .deleteButton:hover,
 .deleteButton:active {
-  border-color: #f95723;
-  color: #ffffff;
-  box-shadow: 0 0 0.5rem rgba(249, 87, 35, 0.4);
+  border-color: #ff6b4a;
+  color: #fff1ea;
+  background: rgba(255, 107, 74, 0.15);
+  box-shadow: 0 0 0.5rem rgba(255, 107, 74, 0.35);
 }
