@@ -49,3 +49,8 @@ export async function uploadImage({ buffer, folder, publicId }) {
     upload.end(buffer);
   });
 }
+
+export async function deleteImage(publicId) {
+  ensureConfigured();
+  return cloudinary.uploader.destroy(publicId, { resource_type: 'image' });
+}

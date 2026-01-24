@@ -1,4 +1,5 @@
 import sql from 'better-sqlite3';
+import { unstable_cache } from 'next/cache';
 import slugify from 'slugify';
 import xss from 'xss';
 import { uploadImage } from './cloudinary';
@@ -19,12 +20,36 @@ db.prepare(`
     )
 `).run();
 
+const getMealsCached = unstable_cache(
+  async () => db.prepare('SELECT * FROM meals').all(),
+  ['meals'],
+  { tags: ['meals'] }
+);
+
 export async function getMeals() {
-  return db.prepare('SELECT * FROM meals').all();
+  return getMealsCached();
 }
 
 export function getMeal(slug) {
-  return db.prepare('SELECT * FROM meals WHERE slug = ?').get(slug);
+  const getMealCached = unstable_cache(
+    async () => db.prepare('SELECT * FROM meals WHERE slug = ?').get(slug),
+    ['meal', slug],
+    { tags: [`meal-${slug}`] }
+  );
+
+  return getMealCached();
+}
+
+export async function deleteMeal(slug) {
+  const meal = db.prepare('SELECT image FROM meals WHERE slug = ?').get(slug);
+
+  if (!meal) {
+    return null;
+  }
+
+  db.prepare('DELETE FROM meals WHERE slug = ?').run(slug);
+
+  return meal;
 }
 
 export async function saveMeal(meal) {
@@ -60,4 +85,6 @@ export async function saveMeal(meal) {
       @slug
     )
   `).run(meal);
+
+  return meal;
 }

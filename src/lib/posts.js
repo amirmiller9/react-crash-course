@@ -1,4 +1,5 @@
 import sql from 'better-sqlite3';
+import { unstable_cache } from 'next/cache';
 
 const db = sql('meals.db');
 db.pragma('journal_mode = WAL');
@@ -30,12 +31,24 @@ if (count === 0) {
   }
 }
 
+const getPostsCached = unstable_cache(
+  async () => db.prepare('SELECT * FROM posts').all(),
+  ['posts'],
+  { tags: ['posts'] }
+);
+
 export async function getPosts() {
-  return db.prepare('SELECT * FROM posts').all();
+  return getPostsCached();
 }
 
 export async function getPost(id) {
-  return db.prepare('SELECT * FROM posts WHERE id = ?').get(id);
+  const getPostCached = unstable_cache(
+    async () => db.prepare('SELECT * FROM posts WHERE id = ?').get(id),
+    ['post', id],
+    { tags: [`post-${id}`] }
+  );
+
+  return getPostCached();
 }
 
 export async function savePost(post) {
@@ -46,6 +59,8 @@ export async function savePost(post) {
     INSERT INTO posts (id, author, body, likes)
     VALUES (@id, @author, @body, 0)
   `).run(post);
+
+  return post;
 }
 
 export async function likePost(id) {

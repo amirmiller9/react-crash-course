@@ -1,7 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { savePost, likePost, deletePost } from '../lib/posts';
 
 function isInvalidText(text) {
@@ -31,7 +31,9 @@ export async function addPostAction(prevState, formData) {
   }
 
   try {
-    await savePost(postData);
+    const savedPost = await savePost(postData);
+    revalidateTag('posts');
+    revalidateTag(`post-${savedPost.id}`);
   } catch (error) {
     return {
       message: 'Failed to save post.',
@@ -45,10 +47,14 @@ export async function addPostAction(prevState, formData) {
 
 export async function toggleLikeAction(postId) {
   await likePost(postId);
+  revalidateTag('posts');
+  revalidateTag(`post-${postId}`);
   revalidatePath('/', 'layout');
 }
 
 export async function deletePostAction(postId) {
   await deletePost(postId);
+  revalidateTag('posts');
+  revalidateTag(`post-${postId}`);
   revalidatePath('/', 'layout');
 }

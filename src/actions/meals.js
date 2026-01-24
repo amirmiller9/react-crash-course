@@ -1,8 +1,9 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
-import { saveMeal } from '../lib/meals';
+import { revalidatePath, revalidateTag } from 'next/cache';
+import { deleteMeal, saveMeal } from '../lib/meals';
+import { deleteImage } from '../lib/cloudinary';
 
 function isInvalidText(text) {
   return !text || text.trim() === '';
@@ -47,7 +48,9 @@ export async function shareMealAction(prevState, formData) {
   }
 
   try {
-    await saveMeal(meal);
+    const savedMeal = await saveMeal(meal);
+    revalidateTag('meals');
+    revalidateTag(`meal-${savedMeal.slug}`);
   } catch (error) {
     return {
       message: 'Failed to save meal. Please try again later.',
@@ -57,4 +60,26 @@ export async function shareMealAction(prevState, formData) {
 
   revalidatePath('/meals', 'layout');
   redirect('/meals');
+}
+
+export async function deleteMealAction(slug) {
+  const deletedMeal = await deleteMeal(slug);
+
+  if (!deletedMeal) {
+    return;
+  }
+
+  if (deletedMeal.image?.includes('res.cloudinary.com')) {
+    const folder = process.env.CLOUDINARY_FOLDER || 'meals';
+    const publicId = `${folder}/${slug}`;
+    try {
+      await deleteImage(publicId);
+    } catch (error) {
+      // ignore image deletion failures so DB stays consistent
+    }
+  }
+
+  revalidateTag('meals');
+  revalidateTag(`meal-${slug}`);
+  revalidatePath('/meals', 'layout');
 }
