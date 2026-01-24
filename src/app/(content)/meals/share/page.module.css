@@ -74,6 +74,14 @@
   box-shadow: 0 0 0 0.2rem rgba(249, 87, 35, 0.2);
 }
 
+.fieldError {
+  display: inline-block;
+  margin-top: 0.35rem;
+  color: #f9b241;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 .actions {
   text-align: right;
 }

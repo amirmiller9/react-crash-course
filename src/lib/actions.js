@@ -19,18 +19,31 @@ export async function shareMealAction(prevState, formData) {
     creator_email: formData.get('email'),
   };
 
-  if (
-    isInvalidText(meal.title) ||
-    isInvalidText(meal.summary) ||
-    isInvalidText(meal.instructions) ||
-    isInvalidText(meal.creator) ||
-    isInvalidText(meal.creator_email) ||
-    !meal.creator_email.includes('@') ||
-    !meal.image ||
-    meal.image.size === 0
-  ) {
+  const errors = {};
+
+  if (isInvalidText(meal.title)) {
+    errors.title = 'Please enter a title.';
+  }
+  if (isInvalidText(meal.summary)) {
+    errors.summary = 'Please enter a short summary.';
+  }
+  if (isInvalidText(meal.instructions)) {
+    errors.instructions = 'Please provide cooking instructions.';
+  }
+  if (isInvalidText(meal.creator)) {
+    errors.name = 'Please enter your name.';
+  }
+  if (isInvalidText(meal.creator_email) || !meal.creator_email.includes('@')) {
+    errors.email = 'Please enter a valid email address.';
+  }
+  if (!meal.image || meal.image.size === 0) {
+    errors.image = 'Please select an image.';
+  }
+
+  if (Object.keys(errors).length > 0) {
     return {
       message: 'Invalid input.',
+      errors,
     };
   }
 
@@ -39,6 +52,7 @@ export async function shareMealAction(prevState, formData) {
   } catch (error) {
     return {
       message: 'Failed to save meal. Please try again later.',
+      errors: {},
     };
   }
 
@@ -52,9 +66,19 @@ export async function addPostAction(prevState, formData) {
     author: formData.get('author'),
   };
 
-  if (isInvalidText(postData.body) || isInvalidText(postData.author)) {
+  const errors = {};
+
+  if (isInvalidText(postData.body)) {
+    errors.body = 'Please enter a message.';
+  }
+  if (isInvalidText(postData.author)) {
+    errors.author = 'Please enter your name.';
+  }
+
+  if (Object.keys(errors).length > 0) {
     return {
       message: 'Invalid input.',
+      errors,
     };
   }
 
@@ -63,6 +87,7 @@ export async function addPostAction(prevState, formData) {
   } catch (error) {
     return {
       message: 'Failed to save post.',
+      errors: {},
     };
   }
 

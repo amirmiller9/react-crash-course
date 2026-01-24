@@ -41,6 +41,20 @@
   box-shadow: 0 0 0 4px rgba(166, 124, 82, 0.2);
 }
 
+.error {
+  color: #ff8a05;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.fieldError {
+  display: inline-block;
+  margin-top: 0.35rem;
+  color: #d8691d;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;
