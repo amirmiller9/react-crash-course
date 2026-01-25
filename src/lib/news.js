@@ -7,7 +7,7 @@ export const getAllNews = cache(async function getAllNews() {
   return unstable_cache(
     async () => db.prepare('SELECT * FROM news').all(),
     ['news'],
-    { tags: ['news'] }
+    { tags: ['news'], revalidate: 3600 }
   )();
 });
 
