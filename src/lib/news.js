@@ -20,75 +20,51 @@ export const getLatestNews = cache(async function getLatestNews() {
 });
 
 export const getAvailableNewsYears = cache(async function getAvailableNewsYears() {
-  return unstable_cache(
-    async () => {
-      const news = db.prepare('SELECT date FROM news').all();
-      return news
-        .reduce((years, newsItem) => {
-          const year = new Date(newsItem.date).getFullYear();
-          if (!years.includes(year)) {
-            years.push(year);
-          }
-          return years;
-        }, [])
-        .sort((a, b) => b - a)
-        .map((y) => y.toString());
-    },
-    ['news-years'],
-    { tags: ['news'] }
-  )();
+  const news = await getAllNews();
+  return news
+    .reduce((years, newsItem) => {
+      const year = new Date(newsItem.date).getFullYear();
+      if (!years.includes(year)) {
+        years.push(year);
+      }
+      return years;
+    }, [])
+    .sort((a, b) => b - a)
+    .map((y) => y.toString());
 });
 
 export const getAvailableNewsMonths = cache(async function getAvailableNewsMonths(year) {
-  return unstable_cache(
-    async () => {
-      const news = db.prepare('SELECT date FROM news').all();
-      return news
-        .reduce((months, newsItem) => {
-          const newsDate = new Date(newsItem.date);
-          if (newsDate.getFullYear() === +year) {
-            const month = newsDate.getMonth() + 1;
-            if (!months.includes(month)) {
-              months.push(month);
-            }
-          }
-          return months;
-        }, [])
-        .sort((a, b) => a - b)
-        .map((m) => m.toString());
-    },
-    ['news-months', year],
-    { tags: ['news'] }
-  )();
+  const news = await getAllNews();
+  return news
+    .reduce((months, newsItem) => {
+      const newsDate = new Date(newsItem.date);
+      if (newsDate.getFullYear() === +year) {
+        const month = newsDate.getMonth() + 1;
+        if (!months.includes(month)) {
+          months.push(month);
+        }
+      }
+      return months;
+    }, [])
+    .sort((a, b) => a - b)
+    .map((m) => m.toString());
 });
 
 export const getNewsForYear = cache(async function getNewsForYear(year) {
-  return unstable_cache(
-    async () => {
-      const news = db.prepare('SELECT * FROM news').all();
-      return news.filter(
-        (newsItem) => new Date(newsItem.date).getFullYear() === +year
-      );
-    },
-    ['news-year', year],
-    { tags: ['news'] }
-  )();
+  const news = await getAllNews();
+  return news.filter(
+    (newsItem) => new Date(newsItem.date).getFullYear() === +year
+  );
 });
 
 export const getNewsForYearAndMonth = cache(async function getNewsForYearAndMonth(year, month) {
-  return unstable_cache(
-    async () => {
-      const news = db.prepare('SELECT * FROM news').all();
-      return news.filter((newsItem) => {
-        const newsDate = new Date(newsItem.date);
-        return (
-          newsDate.getFullYear() === +year && newsDate.getMonth() + 1 === +month
-        );
-      });
-    },
-    ['news-year-month', year, month],
-    { tags: ['news'] }
-  )();
+  const news = await getAllNews();
+  return news.filter((newsItem) => {
+    const newsDate = new Date(newsItem.date);
+    return (
+      newsDate.getFullYear() === +year && newsDate.getMonth() + 1 === +month
+    );
+  });
 });
 
 export const getNewsItem = cache(async function getNewsItem(slug) {
