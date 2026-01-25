@@ -35,6 +35,7 @@ export async function addPostAction(prevState, formData) {
     revalidateTag('posts');
     revalidateTag(`post-${savedPost.id}`);
     revalidatePath('/', 'layout');
+    revalidatePath('/create-post'); // Ensure the form page is also refreshed if needed
     redirect('/');
   } catch (error) {
     if (error.digest?.startsWith('NEXT_REDIRECT')) {

@@ -52,6 +52,7 @@ export async function shareMealAction(prevState, formData) {
     revalidateTag('meals');
     revalidateTag(`meal-${savedMeal.slug}`);
     revalidatePath('/meals', 'layout');
+    revalidatePath('/meals/share'); // Explicitly revalidate the share page
     redirect('/meals');
   } catch (error) {
     if (error.digest?.startsWith('NEXT_REDIRECT')) {
