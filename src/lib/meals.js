@@ -9,7 +9,7 @@ export const getMeals = cache(async function getMeals() {
   return unstable_cache(
     async () => db.prepare('SELECT * FROM meals').all(),
     ['meals'],
-    { tags: ['meals'] }
+    { tags: ['meals'], revalidate: 3600 }
   )();
 });
 

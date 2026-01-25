@@ -15,7 +15,7 @@ export const getLatestNews = cache(async function getLatestNews() {
   return unstable_cache(
     async () => db.prepare('SELECT * FROM news ORDER BY date DESC LIMIT 3').all(),
     ['latest-news'],
-    { tags: ['news'] }
+    { tags: ['news'], revalidate: 3600 }
   )();
 });
 

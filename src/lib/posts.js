@@ -6,7 +6,7 @@ export const getPosts = cache(async function getPosts() {
   return unstable_cache(
     async () => db.prepare('SELECT * FROM posts').all(),
     ['posts'],
-    { tags: ['posts'] }
+    { tags: ['posts'], revalidate: 60 }
   )();
 });
 
