@@ -1,39 +1,25 @@
+import { cache } from 'react';
 import db from './db';
 import { unstable_cache } from 'next/cache';
 import slugify from 'slugify';
 import xss from 'xss';
 import { uploadImage } from './cloudinary';
 
-db.prepare(`
-   CREATE TABLE IF NOT EXISTS meals (
-       id INTEGER PRIMARY KEY AUTOINCREMENT,
-       slug TEXT NOT NULL UNIQUE,
-       title TEXT NOT NULL,
-       image TEXT NOT NULL,
-       summary TEXT NOT NULL,
-       instructions TEXT NOT NULL,
-       creator TEXT NOT NULL,
-       creator_email TEXT NOT NULL
-    )
-`).run();
+export const getMeals = cache(async function getMeals() {
+  return unstable_cache(
+    async () => db.prepare('SELECT * FROM meals').all(),
+    ['meals'],
+    { tags: ['meals'] }
+  )();
+});
 
-const getMealsCached = unstable_cache(
-  async () => db.prepare('SELECT * FROM meals').all(),
-  ['meals'],
-  { tags: ['meals'] }
-);
-
-export async function getMeals() {
-  return getMealsCached();
-}
-
-export async function getMeal(slug) {
+export const getMeal = cache(async function getMeal(slug) {
   return unstable_cache(
     async () => db.prepare('SELECT * FROM meals WHERE slug = ?').get(slug),
     ['meal', slug],
     { tags: [`meal-${slug}`] }
   )();
-}
+});
 
 export async function deleteMeal(slug) {
   const meal = db.prepare('SELECT image FROM meals WHERE slug = ?').get(slug);
