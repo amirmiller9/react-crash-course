@@ -27,6 +27,8 @@ function MainHeader() {
         <NavLink href="/meals">Browse Meals</NavLink>
         <NavLink href="/community">Foodies Community</NavLink>
         <NavLink href="/about">About</NavLink>
+        <NavLink href="/login">Login</NavLink>
+        <NavLink href="/signup">Sign Up</NavLink>
         <Image 
           src="/images/amir.png" 
           alt="Amir Miller" 
