@@ -63,7 +63,7 @@ export default async function MealDetailsPage({ params }) {
   const { user } = await verifyAuth();
 
   if (!user) {
-    redirect('/login');
+    redirect('/auth?mode=login');
   }
 
   const { slug } = await params;

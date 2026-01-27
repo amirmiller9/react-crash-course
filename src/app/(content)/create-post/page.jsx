@@ -16,7 +16,7 @@ export default async function CreatePostPage() {
   const { user } = await verifyAuth();
 
   if (!user) {
-    redirect('/login');
+    redirect('/auth?mode=login');
   }
 
   return (

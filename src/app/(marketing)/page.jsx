@@ -29,7 +29,7 @@ export default async function Home() {
               Share your thoughts, connect with others, and discover amazing content.
             </p>
             <p className={classes.cta}>
-              <Link href="/login" className={classes.loginButton}>Login to Get Started</Link>
+              <Link href="/auth?mode=login" className={classes.loginButton}>Login to Get Started</Link>
             </p>
           </div>
         </header>

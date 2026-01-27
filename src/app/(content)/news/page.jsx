@@ -10,7 +10,7 @@ export default async function NewsPage() {
   const { user } = await verifyAuth();
 
   if (!user) {
-    redirect('/login');
+    redirect('/auth?mode=login');
   }
 
   const news = await getAllNews();

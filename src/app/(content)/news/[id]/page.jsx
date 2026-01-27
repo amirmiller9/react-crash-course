@@ -8,7 +8,7 @@ export default async function NewsDetailPage({ params }) {
   const { user } = await verifyAuth();
 
   if (!user) {
-    redirect('/login');
+    redirect('/auth?mode=login');
   }
 
   const { id: newsId } = await params;

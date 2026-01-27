@@ -16,7 +16,7 @@ export default async function AboutPage() {
         </p>
         {!user && (
           <p className={classes.loginNote}>
-            <Link href="/login">Login</Link> to see the full feed and share your own posts!
+            <Link href="/auth?mode=login">Login</Link> to see the full feed and share your own posts!
           </p>
         )}
         <p>

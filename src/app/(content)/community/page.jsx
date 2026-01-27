@@ -20,7 +20,7 @@ export default async function CommunityPage() {
         <p className={classes.text}>Join our vibrant community of food lovers!</p>
         {!user && (
           <p className={classes.loginPrompt}>
-            <Link href="/login" className={classes.link}>Login</Link> to interact with other foodies!
+            <Link href="/auth?mode=login" className={classes.link}>Login</Link> to interact with other foodies!
           </p>
         )}
       </MealsHeader>

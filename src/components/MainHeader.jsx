@@ -43,8 +43,8 @@ async function MainHeader() {
             </Link>
           </>
         )}
-        {!user && <NavLink href="/login">Login</NavLink>}
-        {!user && <NavLink href="/signup">Sign Up</NavLink>}
+        {!user && <NavLink href="/auth?mode=login">Login</NavLink>}
+        {!user && <NavLink href="/auth?mode=signup">Sign Up</NavLink>}
         <Image 
           src="/images/amir.png" 
           alt="Amir Miller" 

@@ -19,7 +19,7 @@ export default function ShareMealPage() {
     async function checkAuth() {
       const { user } = await verifyAuth();
       if (!user) {
-        router.push('/login');
+        router.push('/auth?mode=login');
       }
     }
     checkAuth();

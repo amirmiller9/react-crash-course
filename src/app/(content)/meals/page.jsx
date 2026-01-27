@@ -23,7 +23,7 @@ export default async function MealsPage() {
   const { user } = await verifyAuth();
 
   if (!user) {
-    redirect('/login');
+    redirect('/auth?mode=login');
   }
 
   return (
