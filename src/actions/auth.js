@@ -1,7 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { createUser } from '../lib/user';
+import { createUser, getUserByEmail } from '../lib/user';
 
 function isValidEmail(email) {
   return email && email.includes('@');
@@ -46,16 +46,19 @@ export async function signupAction(prevState, formData) {
     };
   }
 
+  const existingUser = getUserByEmail(email);
+
+  if (existingUser) {
+    return {
+      errors: {
+        email: 'An account with this email already exists.',
+      },
+    };
+  }
+
   try {
     await createUser(email, password, firstName, lastName);
   } catch (error) {
-    if (error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
-      return {
-        errors: {
-          email: 'An account with this email already exists.',
-        },
-      };
-    }
     throw error;
   }
 
