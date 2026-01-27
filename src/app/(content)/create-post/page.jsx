@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import { redirect } from 'next/navigation';
-import PostsList from '../../../components/PostsList';
-import Modal from '../../../components/Modal';
-import NewPostForm from '../../../components/NewPostForm';
-import classes from '../../../components/NewPost.module.css';
+import PostsList from '../../../_components/PostsList';
+import Modal from '../../../_components/Modal';
+import NewPostForm from '../../../_components/NewPostForm';
+import classes from '../../../_components/NewPost.module.css';
 import { getPosts } from '../../../lib/posts';
 import { verifyAuth } from '../../../lib/auth';
 

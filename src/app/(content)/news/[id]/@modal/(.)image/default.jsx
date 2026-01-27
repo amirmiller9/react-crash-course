@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-import Modal from '../../../../../components/Modal';
+import Modal from '../../../../../_components/Modal';
 import { getNewsItem } from '../../../../../lib/news';
 
 export default async function InterceptedImagePage({ params }) {

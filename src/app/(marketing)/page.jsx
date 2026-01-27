@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import PostsList from '../../components/PostsList';
-import ImageSlideshow from '../../components/ImageSlideshow';
+import PostsList from '../../_components/PostsList';
+import ImageSlideshow from '../../_components/ImageSlideshow';
 import classes from './page.module.css';
 import { getPosts } from '../../lib/posts';
 import { verifyAuth } from '../../lib/auth';

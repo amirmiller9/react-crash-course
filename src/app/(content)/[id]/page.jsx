@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
-import PostsList from '../../../components/PostsList';
-import Modal from '../../../components/Modal';
-import classes from '../../../components/PostDetails.module.css';
+import PostsList from '../../../_components/PostsList';
+import Modal from '../../../_components/Modal';
+import classes from '../../../_components/PostDetails.module.css';
 import Link from 'next/link';
 import { getPost, getPosts } from '../../../lib/posts';
 

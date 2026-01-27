@@ -2,8 +2,8 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import MealsHeader from '../../../components/MealsHeader';
-import MealsGrid from '../../../components/MealsGrid';
+import MealsHeader from '../../../_components/MealsHeader';
+import MealsGrid from '../../../_components/MealsGrid';
 import classes from './page.module.css';
 import { getMeals } from '../../../lib/meals';
 import { verifyAuth } from '../../../lib/auth';

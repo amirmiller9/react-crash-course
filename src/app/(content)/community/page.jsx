@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import MealsHeader from '../../../components/MealsHeader';
+import MealsHeader from '../../../_components/MealsHeader';
 import classes from './page.module.css';
 import { verifyAuth } from '../../../lib/auth';
 
