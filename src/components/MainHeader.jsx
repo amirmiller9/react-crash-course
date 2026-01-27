@@ -34,9 +34,12 @@ async function MainHeader() {
         {!user && <NavLink href="/login">Login</NavLink>}
         {!user && <NavLink href="/signup">Sign Up</NavLink>}
         {user && (
-          <form action={logoutAction}>
-            <button className={classes.logoutButton}>Logout</button>
-          </form>
+          <>
+            <span className={classes.userName}>Hi, {user.firstName}</span>
+            <form action={logoutAction}>
+              <button className={classes.logoutButton}>Logout</button>
+            </form>
+          </>
         )}
         <Image 
           src="/images/amir.png" 

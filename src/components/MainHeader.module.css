@@ -157,6 +157,14 @@
   color: #1a0c03;
 }
 
+.userName {
+  color: #f7f1ed;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 @media (max-width: 768px) {
   .header {
     margin: 1rem 5%;
