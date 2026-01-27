@@ -76,6 +76,22 @@
   cursor: not-allowed;
 }
 
+.returnLink {
+  background: transparent;
+  border: none;
+  color: #ddd6cb;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease;
+  align-self: center;
+}
+
+.returnLink:hover {
+  color: #f95723;
+}
+
 .error {
   color: #f33f3f;
   margin: 1rem 0;

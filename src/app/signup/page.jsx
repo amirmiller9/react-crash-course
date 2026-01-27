@@ -2,6 +2,7 @@
 
 import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
+import Link from 'next/link';
 
 import { signupAction } from '../../actions/auth';
 import classes from './page.module.css';
@@ -71,6 +72,7 @@ export default function SignupPage() {
             )}
           </p>
           <div className={classes.actions}>
+            <Link href="/" className={classes.returnLink}>Return to Home</Link>
             <SignupFormSubmit />
           </div>
         </form>

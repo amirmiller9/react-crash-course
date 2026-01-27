@@ -2,6 +2,7 @@
 
 import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
+import Link from 'next/link';
 
 import { loginAction } from '../../actions/auth';
 import classes from './page.module.css';
@@ -43,6 +44,7 @@ export default function LoginPage() {
             )}
           </p>
           <div className={classes.actions}>
+            <Link href="/" className={classes.returnLink}>Return to Home</Link>
             <LoginFormSubmit />
           </div>
         </form>
