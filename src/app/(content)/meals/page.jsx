@@ -1,10 +1,12 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 import MealsHeader from '../../../components/MealsHeader';
 import MealsGrid from '../../../components/MealsGrid';
 import classes from './page.module.css';
 import { getMeals } from '../../../lib/meals';
+import { verifyAuth } from '../../../lib/auth';
 
 export const metadata = {
   title: 'All Meals',
@@ -17,7 +19,13 @@ async function Meals() {
   return <MealsGrid meals={meals} />;
 }
 
-export default function MealsPage() {
+export default async function MealsPage() {
+  const { user } = await verifyAuth();
+
+  if (!user) {
+    redirect('/login');
+  }
+
   return (
     <main className={classes.main}>
       <MealsHeader title="Delicious meals, created by you">

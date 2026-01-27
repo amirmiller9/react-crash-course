@@ -1,10 +1,18 @@
+import { redirect } from 'next/navigation';
 import { getAllNews } from '../../../lib/news';
 import Link from 'next/link';
 import classes from './page.module.css';
+import { verifyAuth } from '../../../lib/auth';
 
 export const revalidate = 3600; // Cache this page for 1 hour
 
 export default async function NewsPage() {
+  const { user } = await verifyAuth();
+
+  if (!user) {
+    redirect('/login');
+  }
+
   const news = await getAllNews();
 
   return (

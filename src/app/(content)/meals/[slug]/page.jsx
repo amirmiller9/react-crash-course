@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 import classes from './page.module.css';
 import { getMeal } from '../../../../lib/meals';
+import { verifyAuth } from '../../../../lib/auth';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -59,6 +60,12 @@ async function Meal({ slug }) {
 }
 
 export default async function MealDetailsPage({ params }) {
+  const { user } = await verifyAuth();
+
+  if (!user) {
+    redirect('/login');
+  }
+
   const { slug } = await params;
 
   return (

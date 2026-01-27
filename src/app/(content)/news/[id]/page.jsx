@@ -1,9 +1,16 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getNewsItem } from '../../../../lib/news';
+import { verifyAuth } from '../../../../lib/auth';
 
 export default async function NewsDetailPage({ params }) {
+  const { user } = await verifyAuth();
+
+  if (!user) {
+    redirect('/login');
+  }
+
   const { id: newsId } = await params;
   const newsItem = await getNewsItem(newsId);
 

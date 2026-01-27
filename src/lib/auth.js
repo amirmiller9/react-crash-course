@@ -54,7 +54,7 @@ export async function verifyAuth() {
       );
     }
   } catch (error) {
-    // Next.js might throw an error if cookies are set in a component
+    console.error('Error in verifyAuth cookie management:', error);
   }
 
   return result;

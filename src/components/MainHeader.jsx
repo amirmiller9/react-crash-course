@@ -26,21 +26,25 @@ async function MainHeader() {
         </Link>
       </h1>
       <div className={classes.actions}>
-        <NavLink href="/">Home</NavLink>
-        <NavLink href="/news">News</NavLink>
-        <NavLink href="/meals">Browse Meals</NavLink>
-        <NavLink href="/community">Foodies Community</NavLink>
-        <NavLink href="/about">About</NavLink>
-        {!user && <NavLink href="/login">Login</NavLink>}
-        {!user && <NavLink href="/signup">Sign Up</NavLink>}
         {user && (
           <>
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/news">News</NavLink>
+            <NavLink href="/meals">Browse Meals</NavLink>
+            <NavLink href="/community">Foodies Community</NavLink>
+            <NavLink href="/about">About</NavLink>
             <span className={classes.userName}>Hi, {user.firstName}</span>
             <form action={logoutAction}>
               <button className={classes.logoutButton}>Logout</button>
             </form>
+            <Link href="/create-post" className={classes.button}>
+              <MdPostAdd size={18} />
+              New Post
+            </Link>
           </>
         )}
+        {!user && <NavLink href="/login">Login</NavLink>}
+        {!user && <NavLink href="/signup">Sign Up</NavLink>}
         <Image 
           src="/images/amir.png" 
           alt="Amir Miller" 
@@ -49,10 +53,6 @@ async function MainHeader() {
           className={classes.avatar}
           priority
         />
-        <Link href="/create-post" className={classes.button}>
-          <MdPostAdd size={18} />
-          New Post
-        </Link>
       </div>
     </header>
   );

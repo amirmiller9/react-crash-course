@@ -3,12 +3,22 @@
 import { redirect } from 'next/navigation';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { savePost, likePost, deletePost } from '../lib/posts';
+import { verifyAuth } from '../lib/auth';
 
 function isInvalidText(text) {
   return !text || text.trim() === '';
 }
 
 export async function addPostAction(prevState, formData) {
+  const { user } = await verifyAuth();
+
+  if (!user) {
+    return {
+      message: 'Unauthorized. Please login to add a post.',
+      errors: {},
+    };
+  }
+
   const postData = {
     body: formData.get('body'),
     author: formData.get('author'),
@@ -49,6 +59,12 @@ export async function addPostAction(prevState, formData) {
 }
 
 export async function toggleLikeAction(postId) {
+  const { user } = await verifyAuth();
+
+  if (!user) {
+    throw new Error('Unauthorized');
+  }
+
   try {
     await likePost(postId);
     revalidateTag('posts');
@@ -60,6 +76,12 @@ export async function toggleLikeAction(postId) {
 }
 
 export async function deletePostAction(postId) {
+  const { user } = await verifyAuth();
+
+  if (!user) {
+    throw new Error('Unauthorized');
+  }
+
   try {
     await deletePost(postId);
     revalidateTag('posts');

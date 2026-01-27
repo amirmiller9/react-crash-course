@@ -4,12 +4,22 @@ import { redirect } from 'next/navigation';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { deleteMeal, saveMeal } from '../lib/meals';
 import { deleteImage } from '../lib/cloudinary';
+import { verifyAuth } from '../lib/auth';
 
 function isInvalidText(text) {
   return !text || text.trim() === '';
 }
 
 export async function shareMealAction(prevState, formData) {
+  const { user } = await verifyAuth();
+
+  if (!user) {
+    return {
+      message: 'Unauthorized. Please login to share a meal.',
+      errors: {},
+    };
+  }
+
   const meal = {
     title: formData.get('title'),
     summary: formData.get('summary'),
@@ -66,6 +76,12 @@ export async function shareMealAction(prevState, formData) {
 }
 
 export async function deleteMealAction(slug) {
+  const { user } = await verifyAuth();
+
+  if (!user) {
+    throw new Error('Unauthorized');
+  }
+
   try {
     const deletedMeal = await deleteMeal(slug);
 

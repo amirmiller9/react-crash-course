@@ -1,8 +1,16 @@
+import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import MealsHeader from '../../../components/MealsHeader';
 import classes from './About.module.css';
+import { verifyAuth } from '../../../lib/auth';
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { user } = await verifyAuth();
+
+  if (!user) {
+    redirect('/login');
+  }
+
   return (
     <main className={classes.aboutMain}>
       <MealsHeader title="About React Poster">
