@@ -10,7 +10,7 @@ export async function createUser(email, password, firstName, lastName) {
   `);
   
   const result = stmt.run(email, hashedPassword, firstName, lastName);
-  return result.lastInsertRowid;
+  return result.lastInsertRowid.toString();
 }
 
 export function getUserByEmail(email) {

@@ -1,16 +1,29 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 import ImagePicker from '../../../../components/ImagePicker';
 import MealsFormSubmit from '../../../../components/MealsFormSubmit';
 import classes from './page.module.css';
 import { shareMealAction } from '../../../../actions/meals';
+import { verifyAuth } from '../../../../lib/auth';
 
 const initialState = { message: null, errors: {} };
 
 export default function ShareMealPage() {
   const [state, formAction] = useActionState(shareMealAction, initialState);
+  const router = useRouter();
+
+  useEffect(() => {
+    async function checkAuth() {
+      const { user } = await verifyAuth();
+      if (!user) {
+        router.push('/login');
+      }
+    }
+    checkAuth();
+  }, [router]);
 
   return (
     <>

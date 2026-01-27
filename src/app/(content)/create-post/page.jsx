@@ -1,16 +1,24 @@
 import { Suspense } from 'react';
+import { redirect } from 'next/navigation';
 import PostsList from '../../../components/PostsList';
 import Modal from '../../../components/Modal';
 import NewPostForm from '../../../components/NewPostForm';
 import classes from '../../../components/NewPost.module.css';
 import { getPosts } from '../../../lib/posts';
+import { verifyAuth } from '../../../lib/auth';
 
 async function Posts() {
   const posts = await getPosts();
   return <PostsList posts={posts} />;
 }
 
-export default function CreatePostPage() {
+export default async function CreatePostPage() {
+  const { user } = await verifyAuth();
+
+  if (!user) {
+    redirect('/login');
+  }
+
   return (
     <>
       <main>

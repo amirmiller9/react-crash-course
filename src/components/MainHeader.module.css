@@ -140,6 +140,23 @@
   z-index: 1;
 }
 
+.logoutButton {
+  background: transparent;
+  border: 1px solid #a67c52;
+  color: #f7f1ed;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.logoutButton:hover {
+  background: #a67c52;
+  color: #1a0c03;
+}
+
 @media (max-width: 768px) {
   .header {
     margin: 1rem 5%;

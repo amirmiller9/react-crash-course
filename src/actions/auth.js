@@ -1,7 +1,10 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 import { createUser, getUserByEmail } from '../lib/user';
+import { lucia } from '../lib/auth';
+import bcrypt from 'bcryptjs';
 
 function isValidEmail(email) {
   return email && email.includes('@');
@@ -56,11 +59,20 @@ export async function signupAction(prevState, formData) {
     };
   }
 
+  let userId;
   try {
-    await createUser(email, password, firstName, lastName);
+    userId = await createUser(email, password, firstName, lastName);
   } catch (error) {
     throw error;
   }
+
+  const session = await lucia.createSession(userId, {});
+  const sessionCookie = lucia.createSessionCookie(session.id);
+  (await cookies()).set(
+    sessionCookie.name,
+    sessionCookie.value,
+    sessionCookie.attributes
+  );
 
   redirect('/');
 }
@@ -85,8 +97,65 @@ export async function loginAction(prevState, formData) {
     };
   }
 
-  // TODO: Implement actual login logic (e.g., verify credentials, create session)
-  console.log('User logged in:', { email });
+  const existingUser = getUserByEmail(email);
+
+  if (!existingUser) {
+    return {
+      errors: {
+        email: 'Invalid email or password.',
+      },
+    };
+  }
+
+  const isValidPassword = await bcrypt.compare(password, existingUser.password);
+
+  if (!isValidPassword) {
+    return {
+      errors: {
+        email: 'Invalid email or password.',
+      },
+    };
+  }
+
+  const session = await lucia.createSession(existingUser.id, {});
+  const sessionCookie = lucia.createSessionCookie(session.id);
+  (await cookies()).set(
+    sessionCookie.name,
+    sessionCookie.value,
+    sessionCookie.attributes
+  );
+
+  redirect('/');
+}
+
+export async function logoutAction() {
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get(lucia.sessionCookieName);
+  if (!sessionCookie) {
+    return {
+      error: 'Unauthorized',
+    };
+  }
+
+  const { session } = await lucia.validateSession(sessionCookie.value);
+  if (!session) {
+    const blankSessionCookie = lucia.createBlankSessionCookie();
+    cookieStore.set(
+      blankSessionCookie.name,
+      blankSessionCookie.value,
+      blankSessionCookie.attributes
+    );
+    return;
+  }
+
+  await lucia.invalidateSession(session.id);
+
+  const blankSessionCookie = lucia.createBlankSessionCookie();
+  cookieStore.set(
+    blankSessionCookie.name,
+    blankSessionCookie.value,
+    blankSessionCookie.attributes
+  );
 
   redirect('/');
 }

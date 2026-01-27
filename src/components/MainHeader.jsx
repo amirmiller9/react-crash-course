@@ -1,11 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { MdPostAdd, MdMessage } from 'react-icons/md';
+import { MdPostAdd } from 'react-icons/md';
 
 import NavLink from './NavLink';
 import classes from './MainHeader.module.css';
+import { verifyAuth } from '../lib/auth';
+import { logoutAction } from '../actions/auth';
 
-function MainHeader() {
+async function MainHeader() {
+  const { user } = await verifyAuth();
+
   return (
     <header className={classes.header}>
       <h1 className={classes.logo}>
@@ -27,8 +31,13 @@ function MainHeader() {
         <NavLink href="/meals">Browse Meals</NavLink>
         <NavLink href="/community">Foodies Community</NavLink>
         <NavLink href="/about">About</NavLink>
-        <NavLink href="/login">Login</NavLink>
-        <NavLink href="/signup">Sign Up</NavLink>
+        {!user && <NavLink href="/login">Login</NavLink>}
+        {!user && <NavLink href="/signup">Sign Up</NavLink>}
+        {user && (
+          <form action={logoutAction}>
+            <button className={classes.logoutButton}>Logout</button>
+          </form>
+        )}
         <Image 
           src="/images/amir.png" 
           alt="Amir Miller" 
