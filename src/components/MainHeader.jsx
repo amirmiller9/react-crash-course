@@ -26,13 +26,13 @@ async function MainHeader() {
         </Link>
       </h1>
       <div className={classes.actions}>
+        <NavLink href="/community">Community</NavLink>
+        <NavLink href="/about">About</NavLink>
         {user && (
           <>
             <NavLink href="/">Home</NavLink>
             <NavLink href="/news">News</NavLink>
             <NavLink href="/meals">Browse Meals</NavLink>
-            <NavLink href="/community">Foodies Community</NavLink>
-            <NavLink href="/about">About</NavLink>
             <span className={classes.userName}>Hi, {user.firstName}</span>
             <form action={logoutAction}>
               <button className={classes.logoutButton}>Logout</button>

@@ -7,10 +7,6 @@ import { verifyAuth } from '../../../lib/auth';
 export default async function AboutPage() {
   const { user } = await verifyAuth();
 
-  if (!user) {
-    redirect('/login');
-  }
-
   return (
     <main className={classes.aboutMain}>
       <MealsHeader title="About React Poster">
@@ -18,6 +14,11 @@ export default async function AboutPage() {
           React Poster is a simple social media application built to demonstrate
           the power of React and Next.js.
         </p>
+        {!user && (
+          <p className={classes.loginNote}>
+            <Link href="/login">Login</Link> to see the full feed and share your own posts!
+          </p>
+        )}
         <p>
           Originally started as a Vite-based SPA, it has been fully migrated to
           the Next.js App Router, showcasing features like:

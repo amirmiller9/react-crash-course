@@ -85,3 +85,25 @@
     font-size: 1.2rem;
   }
 }
+
+.cta {
+  margin-top: 2rem;
+}
+
+.loginButton {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(90deg, #f95723, #ff8a05);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(249, 87, 35, 0.3);
+  transition: all 0.3s ease;
+}
+
+.loginButton:hover {
+  background: linear-gradient(90deg, #fd4715, #f9b241);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249, 87, 35, 0.4);
+}
