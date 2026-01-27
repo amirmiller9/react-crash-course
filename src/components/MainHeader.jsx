@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { MdPostAdd } from 'react-icons/md';
 
 import NavLink from './NavLink';
+import LogoutButton from './LogoutButton';
 import classes from './MainHeader.module.css';
 import { verifyAuth } from '../lib/auth';
 import { logoutAction } from '../actions/auth';
@@ -35,7 +36,7 @@ async function MainHeader() {
             <NavLink href="/meals">Browse Meals</NavLink>
             <span className={classes.userName}>Hi, {user.firstName}</span>
             <form action={logoutAction}>
-              <button className={classes.logoutButton}>Logout</button>
+              <LogoutButton />
             </form>
             <Link href="/create-post" className={classes.button}>
               <MdPostAdd size={18} />
